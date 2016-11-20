@@ -8,6 +8,7 @@ target 'GGDemo' do
   use_frameworks!
 
   pod 'AFNetworking'
+  pod 'ObjectMapper'
 
   target 'GGDemoTests' do
     inherit! :search_paths
@@ -26,10 +27,13 @@ target 'GGNetwork' do
   use_frameworks!
 
   pod 'AFNetworking'
+  pod 'ObjectMapper'
 
   target 'GGNetworkTests' do
     inherit! :search_paths
     pod 'AFNetworking'
+    pod 'ObjectMapper'
+
   end
 
 end

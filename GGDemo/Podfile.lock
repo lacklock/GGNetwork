@@ -14,13 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - ObjectMapper (2.2.1)
 
 DEPENDENCIES:
   - AFNetworking
+  - ObjectMapper
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
 
-PODFILE CHECKSUM: d8d7bb935b6bf0ee759e61fc30739ea6d0957f6b
+PODFILE CHECKSUM: 942f99a7ec1d6be8c59e871e88dacb988c790df4
 
 COCOAPODS: 1.1.1

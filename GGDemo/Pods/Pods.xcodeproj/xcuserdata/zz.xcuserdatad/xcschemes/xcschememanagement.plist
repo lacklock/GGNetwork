@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GGDemo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,22 +42,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>09EDCBDB2481C33CAE67FC2AC5E4D5EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2F2E95A54827B63DB85D973C1D88EDE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>985B26749FCA64C96BD45F373B9FFEA7</key>
+		<key>7AA9E80CE5B03BAB9321521B0A1290EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9FAB8A9538537B5990D7EF6D99F915CB</key>
+		<key>B43918AB915242B851ABEFB5D70BE0AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AAA9955D70724F68ADA224F85A3C053B</key>
+		<key>B6DC0ADF964F5AF301C05A29CAC122DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
