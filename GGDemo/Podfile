@@ -7,7 +7,7 @@ target 'GGDemo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'AFNetworking'
+  pod 'Alamofire', '~> 4.1'
   pod 'ObjectMapper'
 
   target 'GGDemoTests' do
@@ -26,12 +26,12 @@ target 'GGNetwork' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'AFNetworking'
+  pod 'Alamofire', '~> 4.1'
   pod 'ObjectMapper'
 
   target 'GGNetworkTests' do
     inherit! :search_paths
-    pod 'AFNetworking'
+    pod 'Alamofire', '~> 4.1'
     pod 'ObjectMapper'
 
   end

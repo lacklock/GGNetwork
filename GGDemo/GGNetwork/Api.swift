@@ -7,7 +7,16 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
 
 public class Api: NSObject {
-
+    
+    var method: HTTPMethod{
+        return .get
+    }
+    
+    var path: String {
+        return ""
+    }
 }
