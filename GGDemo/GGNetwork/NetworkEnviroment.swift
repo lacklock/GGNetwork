@@ -8,7 +8,8 @@
 
 import Foundation
 
-public enum NetworkEnviroment {
+public enum NetworkEnvironment {
+    
     case debug
     case release
     
@@ -21,6 +22,8 @@ public enum NetworkEnviroment {
         }
     }
     
+    
+    /// oauth用
     var clintID: String {
         switch self {
         case .debug:

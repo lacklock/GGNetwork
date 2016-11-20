@@ -10,7 +10,7 @@ import Foundation
 
 public class NetworkConfig: NSObject {
     
-    static var environment = NetworkEnviroment.debug
+    public static var environment = NetworkEnvironment.debug
     
     
 }

@@ -25,6 +25,8 @@
 		3A7544891DE19F2D00C9BC9A /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544881DE19F2D00C9BC9A /* Api.swift */; };
 		3A75448B1DE1AC5500C9BC9A /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A75448A1DE1AC5500C9BC9A /* NetworkConfig.swift */; };
 		3A75448D1DE1AFA700C9BC9A /* NetworkEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A75448C1DE1AFA700C9BC9A /* NetworkEnviroment.swift */; };
+		3A7544911DE2070200C9BC9A /* TokenApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544901DE2070200C9BC9A /* TokenApi.swift */; };
+		3A7544931DE20B7200C9BC9A /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544921DE20B7200C9BC9A /* ResponseHandler.swift */; };
 		3E8735325E8A581B24554FD1 /* Pods_GGDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7B098F846B71D3D373176B /* Pods_GGDemo.framework */; };
 		8F08F78206A1353FCA483FFA /* Pods_GGDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEFEA3427347560E8F4E87C /* Pods_GGDemoUITests.framework */; };
 		DFF2F25878307BACB347DD2D /* Pods_GGDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB15899B22BBB306C920A686 /* Pods_GGDemoTests.framework */; };
@@ -115,6 +117,8 @@
 		3A7544881DE19F2D00C9BC9A /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		3A75448A1DE1AC5500C9BC9A /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		3A75448C1DE1AFA700C9BC9A /* NetworkEnviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEnviroment.swift; sourceTree = "<group>"; };
+		3A7544901DE2070200C9BC9A /* TokenApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenApi.swift; sourceTree = "<group>"; };
+		3A7544921DE20B7200C9BC9A /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
 		3F0CC265599A4477AA5FE365 /* Pods-GGNetworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGNetworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GGNetworkTests/Pods-GGNetworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		5ACB70C5C59D4D9466DE9B4B /* Pods-GGDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GGDemoTests/Pods-GGDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		7D7B098F846B71D3D373176B /* Pods_GGDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GGDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,11 +262,9 @@
 		3A75446B1DE19F0700C9BC9A /* GGNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				3A75446C1DE19F0700C9BC9A /* GGNetwork.h */,
-				3A75446D1DE19F0700C9BC9A /* Info.plist */,
-				3A7544881DE19F2D00C9BC9A /* Api.swift */,
-				3A75448A1DE1AC5500C9BC9A /* NetworkConfig.swift */,
-				3A75448C1DE1AFA700C9BC9A /* NetworkEnviroment.swift */,
+				3A75448E1DE205BC00C9BC9A /* ProjectConfig */,
+				3A75448F1DE205C600C9BC9A /* Core */,
+				3A7544901DE2070200C9BC9A /* TokenApi.swift */,
 			);
 			path = GGNetwork;
 			sourceTree = "<group>";
@@ -274,6 +276,26 @@
 				3A75447B1DE19F0700C9BC9A /* Info.plist */,
 			);
 			path = GGNetworkTests;
+			sourceTree = "<group>";
+		};
+		3A75448E1DE205BC00C9BC9A /* ProjectConfig */ = {
+			isa = PBXGroup;
+			children = (
+				3A75446C1DE19F0700C9BC9A /* GGNetwork.h */,
+				3A75446D1DE19F0700C9BC9A /* Info.plist */,
+			);
+			name = ProjectConfig;
+			sourceTree = "<group>";
+		};
+		3A75448F1DE205C600C9BC9A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3A7544881DE19F2D00C9BC9A /* Api.swift */,
+				3A75448A1DE1AC5500C9BC9A /* NetworkConfig.swift */,
+				3A75448C1DE1AFA700C9BC9A /* NetworkEnviroment.swift */,
+				3A7544921DE20B7200C9BC9A /* ResponseHandler.swift */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 		45247F52AABA078240E3E03F /* Pods */ = {
@@ -770,8 +792,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A7544911DE2070200C9BC9A /* TokenApi.swift in Sources */,
 				3A75448D1DE1AFA700C9BC9A /* NetworkEnviroment.swift in Sources */,
 				3A75448B1DE1AC5500C9BC9A /* NetworkConfig.swift in Sources */,
+				3A7544931DE20B7200C9BC9A /* ResponseHandler.swift in Sources */,
 				3A7544891DE19F2D00C9BC9A /* Api.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
