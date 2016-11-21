@@ -30,20 +30,39 @@ public class Api: NSObject {
     }
     
     var parameters = [String : Any]()
-    var headers = [String : String]()
+    public var headers = [String : String]()
     
-    public var response = ResponseHandler()
+    public var success: (Any) -> Void  = { _ in }
+    public var fail: (Error) -> Void = { _ in }
     
-    @discardableResult
-    public func startRequest() -> ResponseHandler {
-        Alamofire.request(url, method: method, parameters: parameters,headers: headers).responseJSON { response in
-            switch response.result {
-            case .failure(let error):
-                self.response.fail(error)
-            case .success(let json):
-                self.response.success(json)
+    enum NetworkError: Error {
+        case jsonMapperError
+    }
+
+    func request<T: Mappable>() -> GGRequest<T> {
+        let handler = GGRequest<T>() {(sendNext,sendFail) in
+            Alamofire.request(self.url, method: self.method, parameters: self.parameters,headers: self.headers).responseJSON {[weak self] response in
+                guard let strongSelf = self else {
+                    return
+                }
+                switch response.result {
+                case .failure(let error):
+                    strongSelf.fail(error)
+                case .success(let json):
+                    if let data = json as? [String:Any] {
+                        if let model = Mapper<T>().map(JSON: data) {
+                            sendNext(model)
+                            strongSelf.success(model)
+                        }else {
+                            sendFail(NetworkError.jsonMapperError)
+                            strongSelf.fail(NetworkError.jsonMapperError)
+                        }
+                    }
+                }
             }
         }
-        return response
+        return handler
     }
+    
+    
 }

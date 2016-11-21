@@ -12,5 +12,9 @@ public class NetworkConfig: NSObject {
     
     public static var environment = NetworkEnvironment.debug
     
+    public static var userName: String?
+    
+    static var accessToken: String?
+    
     
 }

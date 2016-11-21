@@ -14,7 +14,8 @@ class SwiftViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var api = Api()
+        var api = TokenApi(type: .credentials)
+        
     }
 
 

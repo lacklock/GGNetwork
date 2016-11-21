@@ -20,8 +20,8 @@ class GGNetworkTests: XCTestCase {
     func testGetToken() {
         let expection = expectation(description: "get token")
         
-        let api = TokenApi()
-        api.startRequest().succeed { (data) in
+        let api = TokenApi(type: .credentials)
+        api.handler.succeed { (data) in
             print(data)
             XCTAssert(true)
             expection.fulfill()
@@ -29,7 +29,7 @@ class GGNetworkTests: XCTestCase {
             print(error)
             XCTAssert(false)
             expection.fulfill()
-        }
+        }.start()
         
         waitForExpectations(timeout: 15) { error in
             print(error)

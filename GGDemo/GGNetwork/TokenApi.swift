@@ -8,14 +8,50 @@
 
 import UIKit
 import Alamofire
+import ObjectMapper
+
+@objc public enum OAuthGrantType: Int {
+    case credentials
+    case password
+    case refreshToken
+}
+
+extension OAuthGrantType {
+    var value: String {
+        switch self {
+        case .credentials:
+            return "client_credentials"
+        case .password:
+            return "password"
+        case .refreshToken:
+            return "refreshToken"
+        }
+    }
+}
 
 public class TokenApi: Api {
     
-    public override init() {
+    public var type = OAuthGrantType.credentials
+    
+    public init(type: OAuthGrantType) {
         super.init()
+        setIdentiferParameters()
+        self.type = type
+        parameters["grant_type"] = type.value
+    }
+    
+    public init(password: String) {
+        super.init()
+        type = OAuthGrantType.password
+        parameters["username"] = NetworkConfig.userName
+        parameters["password"] = password
+        parameters["grant_type"] = type.value
+        setIdentiferParameters()
+    }
+    
+    private func setIdentiferParameters() {
         parameters["client_id"] = NetworkConfig.environment.clintID
         parameters["client_secret"] = NetworkConfig.environment.secret
-        parameters["grant_type"] = "client_credentials"
     }
     
     override var method: HTTPMethod {
@@ -25,5 +61,11 @@ public class TokenApi: Api {
     override var path: String {
         return "/oauth/token"
     }
-
+    
+    lazy var handler: GGRequest<OAuthResult> = self.request()
+    
+    public func start() {
+        handler.start()
+    }
+    
 }

@@ -19,7 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    Api *api = [[Api alloc]init];
+    TokenApi *api = [[TokenApi alloc] initWithType:OAuthGrantTypeCredentials];
+    api.success = ^(OAuthResult *result) {
+        NSString *token = result.token;
+    };
+    [api start];
+    
+    
 }
 
 
