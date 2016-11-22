@@ -10,6 +10,10 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
+enum NetworkError: Error {
+    case jsonMapperError
+}
+
 public class Api: NSObject {
     
     public override init() {
@@ -30,14 +34,11 @@ public class Api: NSObject {
     }
     
     var parameters = [String : Any]()
-    public var headers = [String : String]()
+    var headers = [String : String]()
     
+    //为兼容OC用
     public var success: (Any) -> Void  = { _ in }
     public var fail: (Error) -> Void = { _ in }
-    
-    enum NetworkError: Error {
-        case jsonMapperError
-    }
 
     func request<T: Mappable>() -> GGRequest<T> {
         let handler = GGRequest<T>() {(sendNext,sendFail) in
@@ -48,6 +49,7 @@ public class Api: NSObject {
                 switch response.result {
                 case .failure(let error):
                     strongSelf.fail(error)
+                    sendFail(error)
                 case .success(let json):
                     if let data = json as? [String:Any] {
                         if let model = Mapper<T>().map(JSON: data) {
@@ -61,8 +63,34 @@ public class Api: NSObject {
                 }
             }
         }
+        
         return handler
     }
     
+//    func request<T: Mappable>() -> GGRequest<[T]> {
+//        let handler = GGRequest<[T]>() {(sendNext,sendFail) in
+//            Alamofire.request(self.url, method: self.method, parameters: self.parameters,headers: self.headers).responseJSON {[weak self] response in
+//                guard let strongSelf = self else {
+//                    return
+//                }
+//                switch response.result {
+//                case .failure(let error):
+//                    strongSelf.fail(error)
+//                    sendFail(error)
+//                case .success(let json):
+//                    if let data = json as? [String:Any] {
+//                        if let model = Mapper<T>().map(JSON: data) {
+//                            sendNext(model)
+//                            strongSelf.success(model)
+//                        }else {
+//                            sendFail(NetworkError.jsonMapperError)
+//                            strongSelf.fail(NetworkError.jsonMapperError)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return handler
+//    }
     
 }

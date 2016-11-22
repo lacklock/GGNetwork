@@ -11,6 +11,14 @@ import ObjectMapper
 
 public class OAuthResult: NSObject, Mappable {
     
+    enum Key: String {
+        case access_token
+        case expires_in
+        case access_expires_in
+        case refresh_token
+        case refresh_expires_in
+    }
+    
     public var token = ""
     public var expire = 0
     public var tokenType = ""
@@ -21,9 +29,9 @@ public class OAuthResult: NSObject, Mappable {
     }
     
     public func mapping(map: Map) {
-        token <- map["access_token"]
-        expire <- map["expires_in"]
+        token <- map[Key.access_token.rawValue]
+        expire <- map[Key.expires_in.rawValue]
         tokenType <- map["token_type"]
-        refreshToken <- map["refresh_token"]
+        refreshToken <- map[Key.refresh_token.rawValue]
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-public class GGRequest<Value: Mappable>: NSObject {
+public class GGRequest<Value>: NSObject {
     
     typealias SendNext = (Value) -> Void
     typealias SendFail = (Error) -> Void
