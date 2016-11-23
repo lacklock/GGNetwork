@@ -18,7 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[NetworkConfig env]
+    [NetworkManager start];
     return YES;
 }
 

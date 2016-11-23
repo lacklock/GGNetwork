@@ -20,7 +20,7 @@ public class OAuthResult: NSObject, Mappable {
     }
     
     public var token = ""
-    public var expire = 0
+    public var expire: Double = 0
     public var tokenType = ""
     public var refreshToken: String?
     

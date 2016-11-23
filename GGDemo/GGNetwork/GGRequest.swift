@@ -28,7 +28,7 @@ public class GGRequest<Value>: NSObject {
     }
     
     @discardableResult
-    public func succeed(handler: @escaping (Any) -> Void) -> GGRequest<Value> {
+    public func succeed(handler: @escaping (Value) -> Void) -> GGRequest<Value> {
         success = handler
         return self
     }
