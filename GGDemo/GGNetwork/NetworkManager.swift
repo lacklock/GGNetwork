@@ -9,23 +9,30 @@
 import Foundation
 import UIKit
 
-let RefreshTokenExpireInterval: Double = 14 * 24 * 60 * 60 //refresh token 过期时间为两周
 
 public class NetworkManager: NSObject {
     
-    private static var accessToken: String? {
+    static var accessToken: String? {
         didSet{
             UserDefaults.standard.set(accessToken, forKey: OAuthResult.Key.access_token.rawValue)
         }
     }
-    private static var accessTokenExpire: Double = 0 {
+    static var accessTokenExpire: Double = 0 {
         didSet{
             UserDefaults.standard.set(accessTokenExpire, forKey: OAuthResult.Key.access_expires_in.rawValue)
         }
     }
     
-    private static var refreshToken: String?
-    private static var refreshTokenExpire: Double = 0
+    static var refreshToken: String? {
+        didSet{
+            UserDefaults.standard.set(refreshToken, forKey: OAuthResult.Key.refresh_token.rawValue)
+        }
+    }
+    static var refreshTokenExpire: Double = 0 {
+        didSet{
+            UserDefaults.standard.set(refreshTokenExpire, forKey: OAuthResult.Key.refresh_expires_in.rawValue)
+        }
+    }
     
     /// 请求时如果正在刷新token，挂起api
     private static var suspendRequests = [Api]()
@@ -48,21 +55,20 @@ public class NetworkManager: NSObject {
             requestToken()
             return true
         }
-        let now = NSDate().timeIntervalSince1970
-        let wariningInterval: Double = 15 * 60 //如果过期时间很接近提前更新token
+        let now = Date().timeIntervalSince1970
+        let warningInterval: Double = 15 * 60 //如果过期时间很接近提前更新token
         if now > accessTokenExpire {
             requestToken()
             return true
-        } else if (accessTokenExpire - now ) < wariningInterval { //过期时间距离现在小于警戒时间
+        } else if (accessTokenExpire - now ) < warningInterval { //过期时间距离现在小于警戒时间
             requestToken()
         }
         return false
     }
     
     static func requestToken() {
-        let now = NSDate().timeIntervalSince1970
-        if let _ = refreshToken,
-            refreshTokenExpire > 0,
+        let now = Date().timeIntervalSince1970
+        if let _ = refreshToken,  // TODO: 刷新token过期是要提示用户登录？
             refreshTokenExpire > now {
             startRefreshToken()
         }else {
@@ -73,7 +79,18 @@ public class NetworkManager: NSObject {
     
     /// 根据刷新原有token
     static func startRefreshToken() {
-        
+        isRequestingToken = true
+        let api = TokenApi(type: .refreshToken)
+        api.handler.succeed { (oauth) in
+            self.isRequestingToken = false
+            NetworkManager.accessToken = oauth.token
+            NetworkManager.accessTokenExpire = oauth.tokenExpire
+            NetworkManager.refreshToken = oauth.refreshToken
+            NetworkManager.accessTokenExpire = oauth.refreshTokenExpire
+        }.failed { (error) in
+            self.isRequestingToken = false
+            // TODO: failed handle
+        }.start()
     }
     
     
@@ -84,7 +101,7 @@ public class NetworkManager: NSObject {
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
             self.accessToken = oauth.token
-            self.accessTokenExpire = oauth.expire + Date().timeIntervalSince1970
+            self.accessTokenExpire = oauth.tokenExpire
         }.failed { (error) in
             self.isRequestingToken = false
             // failed waiting queue

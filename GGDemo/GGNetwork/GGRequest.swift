@@ -29,7 +29,12 @@ public class GGRequest<Value>: NSObject {
     
     @discardableResult
     public func succeed(handler: @escaping (Value) -> Void) -> GGRequest<Value> {
-        success = handler
+        success = {[unowned self] response in
+            handler(response)
+            self.observeSuccesQueue.forEach {
+                $0(response)
+            }
+        }
         return self
     }
     
@@ -37,6 +42,11 @@ public class GGRequest<Value>: NSObject {
     public func failed(handler: @escaping (Error) -> Void) -> GGRequest<Value> {
         fail = handler
         return self
+    }
+    
+    private var observeSuccesQueue = [SendNext]()
+    public func observeSucces(handler: @escaping (Value) -> Void) {
+        observeSuccesQueue.append(handler)
     }
 
 }

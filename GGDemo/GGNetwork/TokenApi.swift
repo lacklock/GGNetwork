@@ -38,15 +38,24 @@ public class TokenApi: Api {
         setIdentiferParameters()
         self.type = type
         parameters["grant_type"] = type.value
+        if case .refreshToken = type {
+            parameters[OAuthResult.Key.refresh_token.rawValue] = NetworkManager.refreshToken
+        }
     }
     
-    public init(password: String) {
+    public init(userName: String, password: String) {
         super.init()
         type = OAuthGrantType.password
-        parameters["username"] = NetworkConfig.userName
+        parameters["username"] = userName
         parameters["password"] = password
         parameters["grant_type"] = type.value
         setIdentiferParameters()
+        handler.observeSucces { (oauth) in
+            NetworkManager.accessToken  = oauth.token
+            NetworkManager.accessTokenExpire = oauth.tokenExpire
+            NetworkManager.refreshToken = oauth.refreshToken
+            NetworkManager.refreshTokenExpire = oauth.refreshTokenExpire
+        }
     }
     
     private func setIdentiferParameters() {

@@ -29,6 +29,7 @@
 		3A7544911DE2070200C9BC9A /* TokenApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544901DE2070200C9BC9A /* TokenApi.swift */; };
 		3A7544931DE20B7200C9BC9A /* GGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544921DE20B7200C9BC9A /* GGRequest.swift */; };
 		3AED4B7D1DE4AF3800180907 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AED4B7C1DE4AF3800180907 /* NetworkManager.swift */; };
+		3AFBA1BB1DE601FB003CE010 /* OauthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBA1BA1DE601FB003CE010 /* OauthTests.swift */; };
 		3E8735325E8A581B24554FD1 /* Pods_GGDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7B098F846B71D3D373176B /* Pods_GGDemo.framework */; };
 		8F08F78206A1353FCA483FFA /* Pods_GGDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEFEA3427347560E8F4E87C /* Pods_GGDemoUITests.framework */; };
 		DFF2F25878307BACB347DD2D /* Pods_GGDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB15899B22BBB306C920A686 /* Pods_GGDemoTests.framework */; };
@@ -123,6 +124,7 @@
 		3A7544901DE2070200C9BC9A /* TokenApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenApi.swift; sourceTree = "<group>"; };
 		3A7544921DE20B7200C9BC9A /* GGRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGRequest.swift; sourceTree = "<group>"; };
 		3AED4B7C1DE4AF3800180907 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3AFBA1BA1DE601FB003CE010 /* OauthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthTests.swift; sourceTree = "<group>"; };
 		3F0CC265599A4477AA5FE365 /* Pods-GGNetworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGNetworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GGNetworkTests/Pods-GGNetworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		5ACB70C5C59D4D9466DE9B4B /* Pods-GGDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GGDemoTests/Pods-GGDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		7D7B098F846B71D3D373176B /* Pods_GGDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GGDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7544791DE19F0700C9BC9A /* GGNetworkTests.swift */,
+				3AFBA1BA1DE601FB003CE010 /* OauthTests.swift */,
 				3A75447B1DE19F0700C9BC9A /* Info.plist */,
 			);
 			path = GGNetworkTests;
@@ -821,6 +824,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A75447A1DE19F0700C9BC9A /* GGNetworkTests.swift in Sources */,
+				3AFBA1BB1DE601FB003CE010 /* OauthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
