@@ -51,10 +51,7 @@ public class TokenApi: Api {
         parameters["grant_type"] = type.value
         setIdentiferParameters()
         handler.observeSucces { (oauth) in
-            NetworkManager.accessToken  = oauth.token
-            NetworkManager.accessTokenExpire = oauth.tokenExpire
-            NetworkManager.refreshToken = oauth.refreshToken
-            NetworkManager.refreshTokenExpire = oauth.refreshTokenExpire
+            NetworkManager.udpate(oauth: oauth)
         }
     }
     

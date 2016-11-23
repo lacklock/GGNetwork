@@ -83,14 +83,18 @@ public class NetworkManager: NSObject {
         let api = TokenApi(type: .refreshToken)
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
-            NetworkManager.accessToken = oauth.token
-            NetworkManager.accessTokenExpire = oauth.tokenExpire
-            NetworkManager.refreshToken = oauth.refreshToken
-            NetworkManager.accessTokenExpire = oauth.refreshTokenExpire
+            self.udpate(oauth: oauth)
         }.failed { (error) in
             self.isRequestingToken = false
             // TODO: failed handle
         }.start()
+    }
+    
+    static func udpate(oauth: OAuthResult) {
+        accessToken = oauth.token
+        accessTokenExpire = oauth.tokenExpire
+        refreshToken = oauth.refreshToken
+        accessTokenExpire = oauth.refreshTokenExpire
     }
     
     
