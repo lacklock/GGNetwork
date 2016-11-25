@@ -87,7 +87,6 @@ public class NetworkManager: NSObject {
         let api = TokenApi(type: .refreshToken)
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
-            self.udpate(oauth: oauth)
         }.failed { (error) in
             self.isRequestingToken = false
             // TODO: failed handle
@@ -100,7 +99,6 @@ public class NetworkManager: NSObject {
         refreshToken = oauth.refreshToken
         accessTokenExpire = oauth.refreshTokenExpire
     }
-    
     
     /// 请求一个全新的token
     static func requestNewToken() {

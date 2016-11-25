@@ -14,12 +14,14 @@ class SwiftViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-            let api = CountriesApi()
+        let api = CountriesApi()
         api.handler.succeed { (countries) in
             print(countries.count)
         }.failed { (error) in
             print(error)
         }.start()
+        
+        
     }
 
 

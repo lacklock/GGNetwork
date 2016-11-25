@@ -24,7 +24,7 @@ extension OAuthGrantType {
         case .password:
             return "password"
         case .refreshToken:
-            return "refreshToken"
+            return "refresh_token"
         }
     }
 }
@@ -38,9 +38,10 @@ public class TokenApi: Api {
         setIdentiferParameters()
         self.type = type
         parameters["grant_type"] = type.value
-        if case .refreshToken = type {
+        if type == .refreshToken {
             parameters[OAuthResult.Key.refresh_token.rawValue] = NetworkManager.refreshToken
         }
+        setupObserver()
     }
     
     public init(userName: String, password: String) {
@@ -50,8 +51,14 @@ public class TokenApi: Api {
         parameters["password"] = password
         parameters["grant_type"] = type.value
         setIdentiferParameters()
+        setupObserver()
+    }
+    
+    private func setupObserver() {
         handler.observeSucces { (oauth) in
-            NetworkManager.udpate(oauth: oauth)
+            if self.type == .password || self.type == .refreshToken {
+                NetworkManager.udpate(oauth: oauth)
+            }
         }
     }
     

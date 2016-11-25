@@ -30,12 +30,16 @@ public class GGRequest<Value>: NSObject {
     @discardableResult
     public func succeed(handler: @escaping (Value) -> Void) -> GGRequest<Value> {
         success = {[unowned self] response in
-            handler(response)
             self.observeSuccesQueue.forEach {
                 $0(response)
             }
+            handler(response)
         }
         return self
+    }
+    
+    public func cachedValue(){
+        
     }
     
     @discardableResult

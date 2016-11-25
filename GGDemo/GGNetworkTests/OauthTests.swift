@@ -23,7 +23,6 @@ class OauthTests: XCTestCase {
         let api = TokenApi(userName: "hgg:13917031501", password: "123456")
         api.handler.succeed { (oauth) in
             print("token: \(oauth.token)")
-            NetworkManager.udpate(oauth: oauth)
             XCTAssert(true)
             expection.fulfill()
         }.failed { (error) in
@@ -36,5 +35,23 @@ class OauthTests: XCTestCase {
         }
     }
     
+    func testRefreshToken() {
+        let expection = expectation(description: "测试登录")
+        let api = TokenApi(type: .refreshToken)
+        api.handler.succeed { (oauth) in
+            print("token: \(oauth.token)")
+            NetworkManager.refreshToken = oauth.refreshToken
+            NetworkManager.refreshTokenExpire = oauth.refreshTokenExpire
+            XCTAssert(true)
+            expection.fulfill()
+            }.failed { (error) in
+                print(error)
+                XCTAssert(false)
+                expection.fulfill()
+            }.start()
+        waitForExpectations(timeout: 15) { error in
+            print(error)
+        }
+    }
     
 }

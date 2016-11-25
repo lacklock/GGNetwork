@@ -22,6 +22,7 @@ public class OAuthResult: NSObject, Mappable {
     }
     
     public var token = ""
+    
     var expire: Double = 0 {
         didSet{
             tokenExpire = Date().timeIntervalSince1970 + expire
@@ -38,7 +39,6 @@ public class OAuthResult: NSObject, Mappable {
     public var refreshTokenExpire: Double = 0
     
     required public init?(map: Map) {
-        
     }
     
     public func mapping(map: Map) {

@@ -22,10 +22,10 @@ public class Api: NSObject {
         setupHeaders()
     }
     
+    var needCache = false 
+    
     private func setupHeaders() {
         headers["Accept"] = "application/vnd.hotelgg.v1+json"
-       // headers["Accept"] = "application/json"
-
     }
     
     /// 默认为Get
@@ -59,7 +59,7 @@ public class Api: NSObject {
     public var fail: (Error) -> Void = { _ in }
 
     func request<T: Mappable>() -> GGRequest<T> {
-        let handler = GGRequest<T>() {(sendNext,sendFail) in // TODO: 这里似乎会引用循环，
+        let handler = GGRequest<T>() {(sendNext,sendFail) in
             self.prepareForRequest()
             Alamofire.request(self.url, method: self.method, parameters: self.parameters,headers: self.headers).responseJSON { response in
                 switch response.result {
@@ -85,7 +85,7 @@ public class Api: NSObject {
         return handler
     }
     
-    func request<T: Mappable>() -> GGRequest<[T]> {
+    public func request<T: Mappable>() -> GGRequest<[T]> {
         let handler = GGRequest<[T]>() {(sendNext,sendFail) in
             self.prepareForRequest()
             Alamofire.request(self.url, method: self.method, parameters: self.parameters,headers: self.headers).responseJSON { response in
