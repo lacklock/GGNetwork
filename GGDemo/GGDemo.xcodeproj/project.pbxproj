@@ -28,6 +28,9 @@
 		3A75448D1DE1AFA700C9BC9A /* NetworkEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A75448C1DE1AFA700C9BC9A /* NetworkEnviroment.swift */; };
 		3A7544911DE2070200C9BC9A /* TokenApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544901DE2070200C9BC9A /* TokenApi.swift */; };
 		3A7544931DE20B7200C9BC9A /* GGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544921DE20B7200C9BC9A /* GGRequest.swift */; };
+		3A9F9B021DE7DE1C00333DDE /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F9B011DE7DE1C00333DDE /* Hotel.swift */; };
+		3A9F9B051DE7E1B100333DDE /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F9B041DE7E1B100333DDE /* Country.swift */; };
+		3A9F9B071DE7E28900333DDE /* CountriesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F9B061DE7E28900333DDE /* CountriesApi.swift */; };
 		3AED4B7D1DE4AF3800180907 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AED4B7C1DE4AF3800180907 /* NetworkManager.swift */; };
 		3AFBA1BB1DE601FB003CE010 /* OauthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBA1BA1DE601FB003CE010 /* OauthTests.swift */; };
 		3E8735325E8A581B24554FD1 /* Pods_GGDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7B098F846B71D3D373176B /* Pods_GGDemo.framework */; };
@@ -123,6 +126,9 @@
 		3A75448C1DE1AFA700C9BC9A /* NetworkEnviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEnviroment.swift; sourceTree = "<group>"; };
 		3A7544901DE2070200C9BC9A /* TokenApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenApi.swift; sourceTree = "<group>"; };
 		3A7544921DE20B7200C9BC9A /* GGRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGRequest.swift; sourceTree = "<group>"; };
+		3A9F9B011DE7DE1C00333DDE /* Hotel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
+		3A9F9B041DE7E1B100333DDE /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		3A9F9B061DE7E28900333DDE /* CountriesApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesApi.swift; sourceTree = "<group>"; };
 		3AED4B7C1DE4AF3800180907 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3AFBA1BA1DE601FB003CE010 /* OauthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthTests.swift; sourceTree = "<group>"; };
 		3F0CC265599A4477AA5FE365 /* Pods-GGNetworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGNetworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GGNetworkTests/Pods-GGNetworkTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -190,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				3A21FE7B1DE30A1000BEDCD2 /* OAuthResult.swift */,
+				3A9F9B011DE7DE1C00333DDE /* Hotel.swift */,
+				3A9F9B041DE7E1B100333DDE /* Country.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -279,7 +287,7 @@
 				3A21FE681DE2F69300BEDCD2 /* Model */,
 				3A75448E1DE205BC00C9BC9A /* ProjectConfig */,
 				3A75448F1DE205C600C9BC9A /* Core */,
-				3A7544901DE2070200C9BC9A /* TokenApi.swift */,
+				3A9F9B031DE7DFC200333DDE /* Api */,
 			);
 			path = GGNetwork;
 			sourceTree = "<group>";
@@ -313,6 +321,15 @@
 				3AED4B7C1DE4AF3800180907 /* NetworkManager.swift */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		3A9F9B031DE7DFC200333DDE /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				3A7544901DE2070200C9BC9A /* TokenApi.swift */,
+				3A9F9B061DE7E28900333DDE /* CountriesApi.swift */,
+			);
+			name = Api;
 			sourceTree = "<group>";
 		};
 		45247F52AABA078240E3E03F /* Pods */ = {
@@ -809,11 +826,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A9F9B071DE7E28900333DDE /* CountriesApi.swift in Sources */,
 				3A21FE7C1DE30A1000BEDCD2 /* OAuthResult.swift in Sources */,
 				3AED4B7D1DE4AF3800180907 /* NetworkManager.swift in Sources */,
+				3A9F9B021DE7DE1C00333DDE /* Hotel.swift in Sources */,
 				3A7544911DE2070200C9BC9A /* TokenApi.swift in Sources */,
 				3A75448D1DE1AFA700C9BC9A /* NetworkEnviroment.swift in Sources */,
 				3A75448B1DE1AC5500C9BC9A /* NetworkConfig.swift in Sources */,
+				3A9F9B051DE7E1B100333DDE /* Country.swift in Sources */,
 				3A7544931DE20B7200C9BC9A /* GGRequest.swift in Sources */,
 				3A7544891DE19F2D00C9BC9A /* Api.swift in Sources */,
 			);

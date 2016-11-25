@@ -15,6 +15,27 @@ class GGNetworkTests: XCTestCase {
     override func setUp() {
         super.setUp()
         NetworkConfig.environment = NetworkEnvironment.debug
+        NetworkManager.start()
+    }
+    
+    func testGetCountries() {
+        let expection = expectation(description: "testGetCountries")
+        
+        let api = CountriesApi()
+        api.handler.succeed { (data) in
+            print(data)
+            XCTAssert(true)
+            expection.fulfill()
+            }.failed { (error) in
+                print(error)
+                XCTAssert(false)
+                expection.fulfill()
+            }.start()
+        
+        waitForExpectations(timeout: 15) { error in
+            print(error)
+        }
+
     }
     
     func testGetToken() {

@@ -14,7 +14,6 @@ class OauthTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        NetworkManager.start()
         NetworkConfig.environment = .debug
     }
     
@@ -24,6 +23,7 @@ class OauthTests: XCTestCase {
         let api = TokenApi(userName: "hgg:13917031501", password: "123456")
         api.handler.succeed { (oauth) in
             print("token: \(oauth.token)")
+            NetworkManager.udpate(oauth: oauth)
             XCTAssert(true)
             expection.fulfill()
         }.failed { (error) in

@@ -15,22 +15,26 @@ public class NetworkManager: NSObject {
     static var accessToken: String? {
         didSet{
             UserDefaults.standard.set(accessToken, forKey: OAuthResult.Key.access_token.rawValue)
+            UserDefaults.standard.synchronize()
         }
     }
     static var accessTokenExpire: Double = 0 {
         didSet{
             UserDefaults.standard.set(accessTokenExpire, forKey: OAuthResult.Key.access_expires_in.rawValue)
+            UserDefaults.standard.synchronize()
         }
     }
     
     static var refreshToken: String? {
         didSet{
             UserDefaults.standard.set(refreshToken, forKey: OAuthResult.Key.refresh_token.rawValue)
+            UserDefaults.standard.synchronize()
         }
     }
     static var refreshTokenExpire: Double = 0 {
         didSet{
             UserDefaults.standard.set(refreshTokenExpire, forKey: OAuthResult.Key.refresh_expires_in.rawValue)
+            UserDefaults.standard.synchronize()
         }
     }
     
@@ -51,7 +55,7 @@ public class NetworkManager: NSObject {
         if isRequestingToken {
             return true
         }
-        guard accessTokenExpire > 0 else {
+        guard let token = accessToken, token.characters.count > 0, accessTokenExpire > 0 else {
             requestToken()
             return true
         }

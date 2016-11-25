@@ -68,7 +68,11 @@ public class TokenApi: Api {
         return "/oauth/token"
     }
     
-    lazy var handler: GGRequest<OAuthResult> = self.request()
+    override var needOAuth: Bool {
+        return false
+    }
+    
+    public lazy var handler: GGRequest<OAuthResult> = self.request()
     
     public func start() {
         handler.start()

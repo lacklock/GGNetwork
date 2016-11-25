@@ -16,7 +16,7 @@ public enum NetworkEnvironment {
     var host: String {
         switch self {
         case .debug:
-            return "https://msa.hotelgg.net"
+            return "http://msa.hotelgg.net"
         case .release:
             return "https://msa.hotelgg.com"
         }
