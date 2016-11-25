@@ -23,19 +23,11 @@ public class OAuthResult: NSObject, Mappable {
     
     public var token = ""
     
-    var expire: Double = 0 {
-        didSet{
-            tokenExpire = Date().timeIntervalSince1970 + expire
-        }
-    }
+    var expire: Double = 0
     public var tokenExpire: Double = 0
     public var tokenType = ""
     
-    public var refreshToken: String? {
-        didSet{
-            refreshTokenExpire = Date().timeIntervalSince1970 + refreshTokenExpireInterval
-        }
-    }
+    public var refreshToken: String?
     public var refreshTokenExpire: Double = 0
     
     required public init?(map: Map) {
@@ -44,8 +36,12 @@ public class OAuthResult: NSObject, Mappable {
     public func mapping(map: Map) {
         token <- map[Key.access_token.rawValue]
         expire <- map[Key.expires_in.rawValue]
+        tokenExpire = Date().timeIntervalSince1970 + expire
         tokenType <- map["token_type"]
         refreshToken <- map[Key.refresh_token.rawValue]
+        if let _ = refreshToken {
+            refreshTokenExpire = Date().timeIntervalSince1970 + refreshTokenExpireInterval
+        }
     }
     
 

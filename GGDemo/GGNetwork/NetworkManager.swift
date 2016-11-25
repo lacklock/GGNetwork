@@ -12,26 +12,26 @@ import UIKit
 
 public class NetworkManager: NSObject {
     
-    static var accessToken: String? {
+    static var accessToken: String? = UserDefaults.standard.string(forKey: OAuthResult.Key.access_token.rawValue) {
         didSet{
             UserDefaults.standard.set(accessToken, forKey: OAuthResult.Key.access_token.rawValue)
             UserDefaults.standard.synchronize()
         }
     }
-    static var accessTokenExpire: Double = 0 {
+    static var accessTokenExpire = UserDefaults.standard.double(forKey: OAuthResult.Key.access_expires_in.rawValue) {
         didSet{
             UserDefaults.standard.set(accessTokenExpire, forKey: OAuthResult.Key.access_expires_in.rawValue)
             UserDefaults.standard.synchronize()
         }
     }
     
-    static var refreshToken: String? {
+    static var refreshToken: String? = UserDefaults.standard.string(forKey: OAuthResult.Key.refresh_token.rawValue) {
         didSet{
             UserDefaults.standard.set(refreshToken, forKey: OAuthResult.Key.refresh_token.rawValue)
             UserDefaults.standard.synchronize()
         }
     }
-    static var refreshTokenExpire: Double = 0 {
+    static var refreshTokenExpire: Double = UserDefaults.standard.double(forKey: OAuthResult.Key.refresh_expires_in.rawValue) {
         didSet{
             UserDefaults.standard.set(refreshTokenExpire, forKey: OAuthResult.Key.refresh_expires_in.rawValue)
             UserDefaults.standard.synchronize()
@@ -42,10 +42,6 @@ public class NetworkManager: NSObject {
     private static var suspendRequests = [Api]()
     
     public static func start() {
-        accessToken = UserDefaults.standard.string(forKey: OAuthResult.Key.access_token.rawValue)
-        accessTokenExpire = UserDefaults.standard.double(forKey: OAuthResult.Key.access_expires_in.rawValue)
-        refreshToken = UserDefaults.standard.string(forKey: OAuthResult.Key.refresh_token.rawValue)
-        refreshTokenExpire = UserDefaults.standard.double(forKey: OAuthResult.Key.refresh_expires_in.rawValue)
         let _ = refreshTokenIfNeeded()
     }
     
@@ -97,7 +93,7 @@ public class NetworkManager: NSObject {
         accessToken = oauth.token
         accessTokenExpire = oauth.tokenExpire
         refreshToken = oauth.refreshToken
-        accessTokenExpire = oauth.refreshTokenExpire
+        refreshTokenExpire = oauth.refreshTokenExpire
     }
     
     /// 请求一个全新的token
