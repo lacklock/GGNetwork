@@ -59,60 +59,49 @@ public class Api: NSObject {
     public var fail: (Error) -> Void = { _ in }
 
     func request<T: Mappable>() -> GGRequest<T> {
-        let handler = GGRequest<T>() {(sendNext,sendFail) in
-            self.prepareForRequest()
-            Alamofire.request(self.url, method: self.method, parameters: self.parameters,headers: self.headers).responseJSON { response in
-                switch response.result {
-                case .failure(let error):
-                    self.fail(error)
-                    sendFail(error)
-                case .success(let json):
-                    guard let data = json as? [String:Any] else {
-                        sendFail(NetworkError.responseDataFormatError)
-                        self.fail(NetworkError.responseDataFormatError)
-                        return
-                    }
-                    if let model = Mapper<T>().map(JSON: data) {
-                        sendNext(model)
-                        self.success(model)
-                    }else {
-                        sendFail(NetworkError.jsonMapperError)
-                        self.fail(NetworkError.jsonMapperError)
-                    }
+        let handler = GGRequest<T>() { (sendNext,sendFail) in
+            self.setupRequest(sendFail: sendFail, finished: { (data: [String : Any]) in
+                if let model = Mapper<T>().map(JSON: data) {
+                    sendNext(model)
+                    self.success(model)
+                }else {
+                    sendFail(NetworkError.jsonMapperError)
+                    self.fail(NetworkError.jsonMapperError)
                 }
-            }
+            })
         }
         return handler
     }
     
     public func request<T: Mappable>() -> GGRequest<[T]> {
         let handler = GGRequest<[T]>() {(sendNext,sendFail) in
-            self.prepareForRequest()
-            Alamofire.request(self.url, method: self.method, parameters: self.parameters,headers: self.headers).responseJSON { response in
-                switch response.result {
-                case .failure(let error):
-                    self.fail(error)
-                    sendFail(error)
-                case .success(let json):
-                    guard let data = json as? [[String:Any]] else {
-                        sendFail(NetworkError.responseDataFormatError)
-                        self.fail(NetworkError.responseDataFormatError)
-                        return
-                    }
-                    let models = data.flatMap {
-                        Mapper<T>().map(JSON: $0)
-                    }
-                    if models.count > 0 {
-                        sendNext(models)
-                        self.success(models)
-                    }else {
-                        sendFail(NetworkError.jsonMapperError)
-                        self.fail(NetworkError.jsonMapperError)
-                    }
+            self.setupRequest(sendFail: sendFail, finished: { (data: [[String : Any]]) in
+                let models = data.flatMap {
+                    Mapper<T>().map(JSON: $0)
                 }
-            }
+                sendNext(models)
+                self.success(models)
+            })
         }
         return handler
     }
-
+    
+    private func setupRequest<ResponseType>(sendFail: @escaping (Error) -> Void, finished: @escaping (ResponseType) -> Void) {
+        prepareForRequest()
+        Alamofire.request(url, method: method, parameters: parameters,headers: headers).responseJSON { response in
+            switch response.result {
+            case .failure(let error):
+                self.fail(error)
+                sendFail(error)
+            case .success(let json):
+                guard let data = json as? ResponseType else {
+                    sendFail(NetworkError.responseDataFormatError)
+                    self.fail(NetworkError.responseDataFormatError)
+                    return
+                }
+                finished(data)
+            }
+        }
+    }
+    
 }

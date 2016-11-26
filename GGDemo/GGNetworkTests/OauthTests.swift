@@ -36,12 +36,10 @@ class OauthTests: XCTestCase {
     }
     
     func testRefreshToken() {
-        let expection = expectation(description: "测试登录")
+        let expection = expectation(description: "刷新token")
         let api = TokenApi(type: .refreshToken)
         api.handler.succeed { (oauth) in
             print("token: \(oauth.token)")
-            NetworkManager.refreshToken = oauth.refreshToken
-            NetworkManager.refreshTokenExpire = oauth.refreshTokenExpire
             XCTAssert(true)
             expection.fulfill()
             }.failed { (error) in

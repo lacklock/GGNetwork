@@ -21,7 +21,10 @@ class SwiftViewController: UIViewController {
             print(error)
         }.start()
         
-        
+//        let token = TokenApi(type: .refreshToken)
+//        token.handler.succeed { (model) in
+//            print(model.refreshToken)
+//        }.start()
     }
 
 
