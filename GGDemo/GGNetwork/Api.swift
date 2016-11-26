@@ -88,19 +88,21 @@ public class Api: NSObject {
     
     private func setupRequest<ResponseType>(sendFail: @escaping (Error) -> Void, finished: @escaping (ResponseType) -> Void) {
         prepareForRequest()
-        Alamofire.request(url, method: method, parameters: parameters,headers: headers).responseJSON { response in
-            switch response.result {
-            case .failure(let error):
-                self.fail(error)
-                sendFail(error)
-            case .success(let json):
-                guard let data = json as? ResponseType else {
-                    sendFail(NetworkError.responseDataFormatError)
-                    self.fail(NetworkError.responseDataFormatError)
-                    return
+        Alamofire.request(url, method: method, parameters: parameters,headers: headers)
+            .validate(statusCode: 200...299)
+            .responseJSON { response in
+                switch response.result {
+                case .failure(let error):
+                    self.fail(error)
+                    sendFail(error)
+                case .success(let json):
+                    guard let data = json as? ResponseType else {
+                        sendFail(NetworkError.responseDataFormatError)
+                        self.fail(NetworkError.responseDataFormatError)
+                        return
+                    }
+                    finished(data)
                 }
-                finished(data)
-            }
         }
     }
     
