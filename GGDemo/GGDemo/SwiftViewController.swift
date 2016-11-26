@@ -24,7 +24,7 @@ class SwiftViewController: UIViewController {
     }
     
     deinit {
-        RequestingQueueManager.hostDestroyed(host: self)
+        //RequestingQueueManager.hostDestroyed(host: self)
     }
 
 

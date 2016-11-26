@@ -31,7 +31,7 @@
         <!--首页-->
         <scene sceneID="3CC-PS-GpZ">
             <objects>
-                <viewController id="MEb-LH-WPc" sceneMemberID="viewController">
+                <viewController id="MEb-LH-WPc" customClass="SwiftMainViewController" customModule="GGDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Pz-0w-W3d"/>
                         <viewControllerLayoutGuide type="bottom" id="j7g-t5-pmU"/>

@@ -12,6 +12,7 @@
 		3A31CF701DE935500043AB97 /* HotelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF6F1DE935500043AB97 /* HotelApi.swift */; };
 		3A31CF721DE955DC0043AB97 /* RequestingQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF711DE955DC0043AB97 /* RequestingQueueManager.swift */; };
 		3A31CF741DE95E8B0043AB97 /* RequestHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF731DE95E8B0043AB97 /* RequestHost.swift */; };
+		3A31CF761DE96B170043AB97 /* SwiftMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF751DE96B170043AB97 /* SwiftMainViewController.swift */; };
 		3A7544291DE19D0100C9BC9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544281DE19D0100C9BC9A /* main.m */; };
 		3A75442C1DE19D0100C9BC9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A75442B1DE19D0100C9BC9A /* AppDelegate.m */; };
 		3A7544321DE19D0100C9BC9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7544301DE19D0100C9BC9A /* Main.storyboard */; };
@@ -20,7 +21,6 @@
 		3A7544421DE19D0100C9BC9A /* GGDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544411DE19D0100C9BC9A /* GGDemoTests.m */; };
 		3A75444D1DE19D0100C9BC9A /* GGDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A75444C1DE19D0100C9BC9A /* GGDemoUITests.m */; };
 		3A75445D1DE19D4F00C9BC9A /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A75445B1DE19D4F00C9BC9A /* SwiftViewController.swift */; };
-		3A75445E1DE19D4F00C9BC9A /* SwiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A75445C1DE19D4F00C9BC9A /* SwiftViewController.xib */; };
 		3A7544631DE19DC900C9BC9A /* OCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544621DE19DC900C9BC9A /* OCViewController.m */; };
 		3A7544731DE19F0700C9BC9A /* GGNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A75446A1DE19F0700C9BC9A /* GGNetwork.framework */; };
 		3A75447A1DE19F0700C9BC9A /* GGNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544791DE19F0700C9BC9A /* GGNetworkTests.swift */; };
@@ -103,6 +103,7 @@
 		3A31CF6F1DE935500043AB97 /* HotelApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelApi.swift; sourceTree = "<group>"; };
 		3A31CF711DE955DC0043AB97 /* RequestingQueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestingQueueManager.swift; sourceTree = "<group>"; };
 		3A31CF731DE95E8B0043AB97 /* RequestHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHost.swift; sourceTree = "<group>"; };
+		3A31CF751DE96B170043AB97 /* SwiftMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMainViewController.swift; sourceTree = "<group>"; };
 		3A5C7DE4D84316646E9AE176 /* Pods_GGNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GGNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7544241DE19D0100C9BC9A /* GGDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7544281DE19D0100C9BC9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		3A75444E1DE19D0100C9BC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A75445A1DE19D4E00C9BC9A /* GGDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GGDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		3A75445B1DE19D4F00C9BC9A /* SwiftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
-		3A75445C1DE19D4F00C9BC9A /* SwiftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwiftViewController.xib; sourceTree = "<group>"; };
 		3A7544611DE19DC900C9BC9A /* OCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCViewController.h; sourceTree = "<group>"; };
 		3A7544621DE19DC900C9BC9A /* OCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCViewController.m; sourceTree = "<group>"; };
 		3A75446A1DE19F0700C9BC9A /* GGNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GGNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,8 +239,8 @@
 		3A7544261DE19D0100C9BC9A /* GGDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3A31CF751DE96B170043AB97 /* SwiftMainViewController.swift */,
 				3A75445B1DE19D4F00C9BC9A /* SwiftViewController.swift */,
-				3A75445C1DE19D4F00C9BC9A /* SwiftViewController.xib */,
 				3A7544611DE19DC900C9BC9A /* OCViewController.h */,
 				3A7544621DE19DC900C9BC9A /* OCViewController.m */,
 				3A7544301DE19D0100C9BC9A /* Main.storyboard */,
@@ -556,7 +556,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A75445E1DE19D4F00C9BC9A /* SwiftViewController.xib in Resources */,
 				3A7544371DE19D0100C9BC9A /* LaunchScreen.storyboard in Resources */,
 				3A7544341DE19D0100C9BC9A /* Assets.xcassets in Resources */,
 				3A7544321DE19D0100C9BC9A /* Main.storyboard in Resources */,
@@ -811,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A31CF761DE96B170043AB97 /* SwiftMainViewController.swift in Sources */,
 				3A75445D1DE19D4F00C9BC9A /* SwiftViewController.swift in Sources */,
 				3A75442C1DE19D0100C9BC9A /* AppDelegate.m in Sources */,
 				3A7544631DE19DC900C9BC9A /* OCViewController.m in Sources */,
