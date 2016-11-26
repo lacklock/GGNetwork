@@ -47,7 +47,7 @@ public class Api: NSObject {
     
     var parameters = [String : Any]()
     var headers = [String : String]()
-    
+        
     func prepareForRequest() {
         if needOAuth,let accessToken = NetworkManager.accessToken {
             headers["Authorization"] = "Bearer \(accessToken)"

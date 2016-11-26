@@ -17,6 +17,24 @@ class OauthTests: XCTestCase {
         NetworkConfig.environment = .debug
     }
     
+    func testGetToken() {
+        let expection = expectation(description: "get token")
+        
+        let api = TokenApi(type: .credentials)
+        api.handler.succeed { (data) in
+            print(data)
+            XCTAssert(true)
+            expection.fulfill()
+            }.failed { (error) in
+                print(error)
+                XCTAssert(false)
+                expection.fulfill()
+            }.start()
+        
+        waitForExpectations(timeout: 15) { error in
+            print(error)
+        }
+    }
     
     func testLogin() {
         let expection = expectation(description: "测试登录")
