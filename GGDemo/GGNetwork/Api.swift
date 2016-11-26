@@ -17,8 +17,9 @@ enum NetworkError: Error {
 
 public class Api: NSObject {
     
-    public override init() {
+    public init(httpMethod: HTTPMethod = .get) {
         super.init()
+        method = httpMethod
         setupHeaders()
     }
     
@@ -29,9 +30,7 @@ public class Api: NSObject {
     }
     
     /// 默认为Get
-    var method: HTTPMethod {
-        return .get
-    }
+    var method = HTTPMethod.get 
     
     var path: String {
         return ""
@@ -41,6 +40,7 @@ public class Api: NSObject {
         return NetworkConfig.environment.host + path
     }
     
+    /// 用于表明发出请求前是否需要带有accessToken，只有获取token的接口不用带
     var needOAuth: Bool {
         return true
     }
@@ -73,8 +73,8 @@ public class Api: NSObject {
         return handler
     }
     
-    public func request<T: Mappable>() -> GGRequest<[T]> {
-        let handler = GGRequest<[T]>() {(sendNext,sendFail) in
+    public func request<T: Mappable>() -> GGRequest<[T]> {        
+        let handler = GGRequest<[T]>() { (sendNext,sendFail) in
             self.setupRequest(sendFail: sendFail, finished: { (data: [[String : Any]]) in
                 let models = data.flatMap {
                     Mapper<T>().map(JSON: $0)

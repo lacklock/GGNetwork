@@ -34,7 +34,7 @@ public class TokenApi: Api {
     public var type = OAuthGrantType.credentials
     
     public init(type: OAuthGrantType) {
-        super.init()
+        super.init(httpMethod: .post)
         setIdentiferParameters()
         self.type = type
         parameters["grant_type"] = type.value
@@ -45,7 +45,7 @@ public class TokenApi: Api {
     }
     
     public init(userName: String, password: String) {
-        super.init()
+        super.init(httpMethod: .post)
         type = OAuthGrantType.password
         parameters["username"] = userName
         parameters["password"] = password
@@ -65,10 +65,6 @@ public class TokenApi: Api {
     private func setIdentiferParameters() {
         parameters["client_id"] = NetworkConfig.environment.clintID
         parameters["client_secret"] = NetworkConfig.environment.secret
-    }
-    
-    override var method: HTTPMethod {
-        return .post
     }
     
     override var path: String {
