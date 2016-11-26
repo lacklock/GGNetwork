@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="188" y="197"/>
         </scene>
-        <!--Swift View Controller-->
+        <!--首页-->
         <scene sceneID="3CC-PS-GpZ">
             <objects>
-                <viewController id="MEb-LH-WPc" customClass="SwiftViewController" customModule="GGDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="MEb-LH-WPc" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Pz-0w-W3d"/>
                         <viewControllerLayoutGuide type="bottom" id="j7g-t5-pmU"/>
@@ -39,13 +39,44 @@
                     <view key="view" contentMode="scaleToFill" id="DPi-G0-30H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdg-j0-tv5">
+                                <rect key="frame" x="178" y="325" width="35" height="30"/>
+                                <state key="normal" title="Push"/>
+                                <connections>
+                                    <segue destination="9KC-0V-aHg" kind="show" id="coN-r6-P08"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xdg-j0-tv5" firstAttribute="centerY" secondItem="DPi-G0-30H" secondAttribute="centerY" id="2mu-kS-9UD"/>
+                            <constraint firstItem="xdg-j0-tv5" firstAttribute="centerX" secondItem="DPi-G0-30H" secondAttribute="centerX" id="q4N-iN-Hc4"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="4vb-jh-rde"/>
+                    <navigationItem key="navigationItem" title="首页" id="uNV-UE-TBC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7PY-Kw-SdP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188" y="-457"/>
+            <point key="canvasLocation" x="1127.2" y="-457.42128935532236"/>
+        </scene>
+        <!--Swift View Controller-->
+        <scene sceneID="xjl-9p-n4s">
+            <objects>
+                <viewController id="9KC-0V-aHg" customClass="SwiftViewController" customModule="GGDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jnH-Wp-2tZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vd0-Fx-oOr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6KR-tt-1d2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xBA-P3-jln" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844" y="-457"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="v3a-wl-K7E">
@@ -57,13 +88,32 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="MEb-LH-WPc" kind="relationship" relationship="viewControllers" id="gsK-wI-8Ar"/>
+                        <segue destination="HkC-RU-lPh" kind="relationship" relationship="viewControllers" id="gsK-wI-8Ar"/>
                         <segue destination="mb5-ZW-c2Q" kind="relationship" relationship="viewControllers" id="Gl4-2U-vTK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbo-yi-LXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-764" y="-130"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b7v-dp-bqm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HkC-RU-lPh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="4vb-jh-rde"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UZH-gC-g0m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MEb-LH-WPc" kind="relationship" relationship="rootViewController" id="82d-I9-WVe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rGa-ZY-slW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="188" y="-457.42128935532236"/>
         </scene>
     </scenes>
 </document>
