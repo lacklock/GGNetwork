@@ -15,16 +15,16 @@ class SwiftViewController: UIViewController {
         super.viewDidLoad()
 
         let api = CountriesApi()
+        api.hostIdentifier = requestHostIdentifier
         api.handler.succeed { (countries) in
             print(countries.count)
         }.failed { (error) in
             print(error)
         }.start()
-        
-//        let token = TokenApi(type: .refreshToken)
-//        token.handler.succeed { (model) in
-//            print(model.refreshToken)
-//        }.start()
+    }
+    
+    deinit {
+        RequestingQueueManager.hostDestroyed(host: self)
     }
 
 

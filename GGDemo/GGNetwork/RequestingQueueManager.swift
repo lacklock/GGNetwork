@@ -9,9 +9,6 @@
 import Foundation
 import Alamofire
 
-public protocol RequestHost {
-    var hostIdentifier: String { get }
-}
 
 public final class RequestingQueueManager: NSObject {
     
@@ -29,7 +26,7 @@ public final class RequestingQueueManager: NSObject {
     }
     
     public static func hostDestroyed(host: RequestHost) {
-        hostDestroyed(hostIdentifier: host.hostIdentifier)
+        hostDestroyed(hostIdentifier: host.requestHostIdentifier)
     }
     
     static func addRequest(request: Request) {

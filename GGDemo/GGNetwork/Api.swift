@@ -45,6 +45,9 @@ public class Api: NSObject {
         return true
     }
     
+    /// 请求关联对象的ID
+    public var hostIdentifier: String?
+    
     var parameters = [String : Any]()
     var headers = [String : String]()
     
@@ -96,9 +99,12 @@ public class Api: NSObject {
     
     private func setupRequest<ResponseType>(sendFail: @escaping (Error) -> Void, finished: @escaping (ResponseType) -> Void) {
         prepareForRequest()
-        Alamofire.request(url, method: method, parameters: parameters,headers: headers)
-            .validate(statusCode: 200...299)
+        let request = Alamofire.request(url, method: method, parameters: parameters,headers: headers)
+        RequestingQueueManager.addRequest(request: request)
+        request.hostIdentifier = hostIdentifier
+        request.validate(statusCode: 200...299)
             .responseJSON { response in
+                RequestingQueueManager.removeRequest(request: request)
                 switch response.result {
                 case .failure(let error):
                     self.fail(error)
