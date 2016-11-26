@@ -319,11 +319,11 @@
 			isa = PBXGroup;
 			children = (
 				3A7544881DE19F2D00C9BC9A /* Api.swift */,
+				3A31CF6D1DE934160043AB97 /* MultiPageApi.swift */,
 				3A75448A1DE1AC5500C9BC9A /* NetworkConfig.swift */,
 				3A75448C1DE1AFA700C9BC9A /* NetworkEnviroment.swift */,
 				3A7544921DE20B7200C9BC9A /* GGRequest.swift */,
 				3AED4B7C1DE4AF3800180907 /* NetworkManager.swift */,
-				3A31CF6D1DE934160043AB97 /* MultiPageApi.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";

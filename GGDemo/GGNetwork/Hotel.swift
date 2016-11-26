@@ -14,6 +14,7 @@ public class Hotel: NSObject,Mappable {
     var ID: Int = 0
     var street = ""
     var title = ""
+    public var tags = [String]()
     
     public required init?(map: Map) {
         
@@ -23,5 +24,6 @@ public class Hotel: NSObject,Mappable {
         ID <- map["id"]
         title <- map["title"]
         street <- map["street"]
+        tags <- map["tags"]
     }
 }

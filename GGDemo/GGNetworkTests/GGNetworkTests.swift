@@ -43,6 +43,7 @@ class GGNetworkTests: XCTestCase {
         let api = HotelApi()
         api.page = 2
         api.perPage = 5
+        api.include = ["stat","tags"]
         api.handler.succeed { (data) in
             print(data)
             XCTAssert(true)

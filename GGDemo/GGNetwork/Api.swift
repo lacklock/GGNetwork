@@ -47,10 +47,18 @@ public class Api: NSObject {
     
     var parameters = [String : Any]()
     var headers = [String : String]()
+    
+    /// 选择需要额外加载的属性
+    public var include = [String]()
         
     func prepareForRequest() {
         if needOAuth,let accessToken = NetworkManager.accessToken {
             headers["Authorization"] = "Bearer \(accessToken)"
+        }
+        if include.count > 0 {
+            parameters["include"] = include.joined(separator: ",")
+        }else {
+            parameters.removeValue(forKey: "include")
         }
     }
     
