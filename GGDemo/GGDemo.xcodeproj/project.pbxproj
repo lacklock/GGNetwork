@@ -11,6 +11,8 @@
 		3A21615E1DEB31AB0023B551 /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615D1DEB31AB0023B551 /* SequenceExtension.swift */; };
 		3A2161601DEB33EB0023B551 /* CountryiesRegionsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615F1DEB33EB0023B551 /* CountryiesRegionsApi.swift */; };
 		3A2161621DEB34310023B551 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2161611DEB34310023B551 /* Region.swift */; };
+		3A2161651DEB3CCC0023B551 /* HotelsByIDApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2161641DEB3CCC0023B551 /* HotelsByIDApi.swift */; };
+		3A2161671DEB3F5A0023B551 /* HotelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2161661DEB3F5A0023B551 /* HotelsTests.swift */; };
 		3A21FE7C1DE30A1000BEDCD2 /* OAuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21FE7B1DE30A1000BEDCD2 /* OAuthResult.swift */; };
 		3A31CF6E1DE934160043AB97 /* MultiPageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF6D1DE934160043AB97 /* MultiPageApi.swift */; };
 		3A31CF701DE935500043AB97 /* HotelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF6F1DE935500043AB97 /* HotelApi.swift */; };
@@ -107,6 +109,8 @@
 		3A21615D1DEB31AB0023B551 /* SequenceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtension.swift; sourceTree = "<group>"; };
 		3A21615F1DEB33EB0023B551 /* CountryiesRegionsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryiesRegionsApi.swift; sourceTree = "<group>"; };
 		3A2161611DEB34310023B551 /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		3A2161641DEB3CCC0023B551 /* HotelsByIDApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelsByIDApi.swift; sourceTree = "<group>"; };
+		3A2161661DEB3F5A0023B551 /* HotelsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelsTests.swift; sourceTree = "<group>"; };
 		3A21FE7B1DE30A1000BEDCD2 /* OAuthResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthResult.swift; sourceTree = "<group>"; };
 		3A31CF6D1DE934160043AB97 /* MultiPageApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPageApi.swift; sourceTree = "<group>"; };
 		3A31CF6F1DE935500043AB97 /* HotelApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelApi.swift; sourceTree = "<group>"; };
@@ -228,6 +232,15 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		3A2161631DEB3C920023B551 /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
+				3A31CF6F1DE935500043AB97 /* HotelApi.swift */,
+				3A2161641DEB3CCC0023B551 /* HotelsByIDApi.swift */,
+			);
+			name = Hotel;
+			sourceTree = "<group>";
+		};
 		3A21FE681DE2F69300BEDCD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7544791DE19F0700C9BC9A /* GGNetworkTests.swift */,
+				3A2161661DEB3F5A0023B551 /* HotelsTests.swift */,
 				3AFBA1BA1DE601FB003CE010 /* OauthTests.swift */,
 				3A75447B1DE19F0700C9BC9A /* Info.plist */,
 			);
@@ -368,7 +382,7 @@
 		3A9F9B031DE7DFC200333DDE /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				3A31CF6F1DE935500043AB97 /* HotelApi.swift */,
+				3A2161631DEB3C920023B551 /* Hotel */,
 				3A7544901DE2070200C9BC9A /* TokenApi.swift */,
 				3A2161591DEB300C0023B551 /* Country */,
 			);
@@ -880,6 +894,7 @@
 				3A7544911DE2070200C9BC9A /* TokenApi.swift in Sources */,
 				3A75448D1DE1AFA700C9BC9A /* NetworkEnviroment.swift in Sources */,
 				3A2161621DEB34310023B551 /* Region.swift in Sources */,
+				3A2161651DEB3CCC0023B551 /* HotelsByIDApi.swift in Sources */,
 				3A75448B1DE1AC5500C9BC9A /* NetworkConfig.swift in Sources */,
 				3A31CF701DE935500043AB97 /* HotelApi.swift in Sources */,
 				3A9F9B051DE7E1B100333DDE /* Country.swift in Sources */,
@@ -896,6 +911,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A75447A1DE19F0700C9BC9A /* GGNetworkTests.swift in Sources */,
+				3A2161671DEB3F5A0023B551 /* HotelsTests.swift in Sources */,
 				3AFBA1BB1DE601FB003CE010 /* OauthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

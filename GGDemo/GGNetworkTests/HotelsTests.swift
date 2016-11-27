@@ -1,8 +1,8 @@
 //
-//  GGNetworkTests.swift
-//  GGNetworkTests
+//  HotelsTests.swift
+//  GGDemo
 //
-//  Created by 卓同学 on 2016/11/20.
+//  Created by 卓同学 on 2016/11/28.
 //
 //
 
@@ -10,17 +10,19 @@ import XCTest
 @testable import GGNetwork
 import Alamofire
 
-class GGNetworkTests: XCTestCase {
+class HotelsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        NetworkConfig.environment = NetworkEnvironment.debug
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
-    func testGetCountries() {
-        let expection = expectation(description: "testGetCountries")
-        
-        let api = CountriesApi()
+    func testGetHotels() {
+        let expection = expectation(description: #function)
+        let api = HotelApi()
+        api.page = 2
+        api.perPage = 5
+        api.include = ["stat","tags"]
         api.handler.succeed { (data) in
             print(data)
             XCTAssert(true)
@@ -36,10 +38,9 @@ class GGNetworkTests: XCTestCase {
         }
     }
     
-    func testGetCountriesRegions() {
-        let expection = expectation(description: "testGetCountries")
-        //let api = CountryiesRegionsApi(codes: ["1","3572"])
-        let api = CountryiesRegionsApi(codes: ["1"])
+    func testGetHotelsByID() {
+        let expection = expectation(description: #function)
+        let api = HotelsByIDApi(hotelIDs: [301,303])
         api.handler.succeed { (data) in
             print(data)
             XCTAssert(true)
@@ -54,5 +55,6 @@ class GGNetworkTests: XCTestCase {
             print(error)
         }
     }
-        
+
+    
 }
