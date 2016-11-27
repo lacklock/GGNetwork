@@ -12,11 +12,19 @@ import ObjectMapper
 
 public class CountriesApi: Api {
     
+    public init() {
+        super.init()
+    }
+    
     override var path: String {
         return "/api/countries"
     }
     
     public lazy var handler: GGRequest<[Country]> = self.request()
+    
+    public func start() {
+        handler.start()
+    }
 
 }
 

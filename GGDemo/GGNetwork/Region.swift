@@ -1,20 +1,18 @@
 //
-//  Conuntry.swift
+//  Region.swift
 //  GGDemo
 //
-//  Created by 卓同学 on 2016/11/25.
+//  Created by 卓同学 on 2016/11/27.
 //
 //
 
 import UIKit
 import ObjectMapper
 
-public class Country: NSObject,Mappable {
+public class Region: NSObject,Mappable {
     
     var ID = 0
     public var name = ""
-    var code = ""
-    var nameEn = ""
     
     public required init?(map: Map) {
         
@@ -23,7 +21,6 @@ public class Country: NSObject,Mappable {
     public func mapping(map: Map) {
         ID <- map["id"]
         name <- map["name"]
-        code <- map["code"]
-        nameEn <- map["name_en"]
     }
+
 }

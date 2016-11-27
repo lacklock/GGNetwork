@@ -11,4 +11,7 @@
 
 @interface OCViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *demoLabel;
+
+
 @end

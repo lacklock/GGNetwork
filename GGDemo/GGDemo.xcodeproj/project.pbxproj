@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A21615B1DEB307F0023B551 /* CountriesRelatedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615A1DEB307F0023B551 /* CountriesRelatedApi.swift */; };
+		3A21615E1DEB31AB0023B551 /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615D1DEB31AB0023B551 /* SequenceExtension.swift */; };
+		3A2161601DEB33EB0023B551 /* CountryiesRegionsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615F1DEB33EB0023B551 /* CountryiesRegionsApi.swift */; };
+		3A2161621DEB34310023B551 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2161611DEB34310023B551 /* Region.swift */; };
 		3A21FE7C1DE30A1000BEDCD2 /* OAuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21FE7B1DE30A1000BEDCD2 /* OAuthResult.swift */; };
 		3A31CF6E1DE934160043AB97 /* MultiPageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF6D1DE934160043AB97 /* MultiPageApi.swift */; };
 		3A31CF701DE935500043AB97 /* HotelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF6F1DE935500043AB97 /* HotelApi.swift */; };
 		3A31CF721DE955DC0043AB97 /* RequestingQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF711DE955DC0043AB97 /* RequestingQueueManager.swift */; };
 		3A31CF741DE95E8B0043AB97 /* RequestHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF731DE95E8B0043AB97 /* RequestHost.swift */; };
 		3A31CF761DE96B170043AB97 /* SwiftMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF751DE96B170043AB97 /* SwiftMainViewController.swift */; };
+		3A31CF781DE984CF0043AB97 /* OCVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CF771DE984CF0043AB97 /* OCVCExtension.swift */; };
 		3A7544291DE19D0100C9BC9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7544281DE19D0100C9BC9A /* main.m */; };
 		3A75442C1DE19D0100C9BC9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A75442B1DE19D0100C9BC9A /* AppDelegate.m */; };
 		3A7544321DE19D0100C9BC9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7544301DE19D0100C9BC9A /* Main.storyboard */; };
@@ -98,12 +103,17 @@
 
 /* Begin PBXFileReference section */
 		217C2273C6C60C5C1D6423F3 /* Pods-GGDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GGDemoUITests/Pods-GGDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3A21615A1DEB307F0023B551 /* CountriesRelatedApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesRelatedApi.swift; sourceTree = "<group>"; };
+		3A21615D1DEB31AB0023B551 /* SequenceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtension.swift; sourceTree = "<group>"; };
+		3A21615F1DEB33EB0023B551 /* CountryiesRegionsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryiesRegionsApi.swift; sourceTree = "<group>"; };
+		3A2161611DEB34310023B551 /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		3A21FE7B1DE30A1000BEDCD2 /* OAuthResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthResult.swift; sourceTree = "<group>"; };
 		3A31CF6D1DE934160043AB97 /* MultiPageApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPageApi.swift; sourceTree = "<group>"; };
 		3A31CF6F1DE935500043AB97 /* HotelApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelApi.swift; sourceTree = "<group>"; };
 		3A31CF711DE955DC0043AB97 /* RequestingQueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestingQueueManager.swift; sourceTree = "<group>"; };
 		3A31CF731DE95E8B0043AB97 /* RequestHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHost.swift; sourceTree = "<group>"; };
 		3A31CF751DE96B170043AB97 /* SwiftMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMainViewController.swift; sourceTree = "<group>"; };
+		3A31CF771DE984CF0043AB97 /* OCVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCVCExtension.swift; sourceTree = "<group>"; };
 		3A5C7DE4D84316646E9AE176 /* Pods_GGNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GGNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7544241DE19D0100C9BC9A /* GGDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7544281DE19D0100C9BC9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -200,12 +210,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A2161591DEB300C0023B551 /* Country */ = {
+			isa = PBXGroup;
+			children = (
+				3A9F9B061DE7E28900333DDE /* CountriesApi.swift */,
+				3A21615A1DEB307F0023B551 /* CountriesRelatedApi.swift */,
+				3A21615F1DEB33EB0023B551 /* CountryiesRegionsApi.swift */,
+			);
+			name = Country;
+			sourceTree = "<group>";
+		};
+		3A21615C1DEB319C0023B551 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3A21615D1DEB31AB0023B551 /* SequenceExtension.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		3A21FE681DE2F69300BEDCD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				3A21FE7B1DE30A1000BEDCD2 /* OAuthResult.swift */,
 				3A9F9B011DE7DE1C00333DDE /* Hotel.swift */,
 				3A9F9B041DE7E1B100333DDE /* Country.swift */,
+				3A2161611DEB34310023B551 /* Region.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -243,6 +272,7 @@
 				3A75445B1DE19D4F00C9BC9A /* SwiftViewController.swift */,
 				3A7544611DE19DC900C9BC9A /* OCViewController.h */,
 				3A7544621DE19DC900C9BC9A /* OCViewController.m */,
+				3A31CF771DE984CF0043AB97 /* OCVCExtension.swift */,
 				3A7544301DE19D0100C9BC9A /* Main.storyboard */,
 				3A7544641DE19DD600C9BC9A /* Other */,
 				3A7544271DE19D0100C9BC9A /* Supporting Files */,
@@ -292,6 +322,7 @@
 		3A75446B1DE19F0700C9BC9A /* GGNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				3A21615C1DEB319C0023B551 /* Util */,
 				3A21FE681DE2F69300BEDCD2 /* Model */,
 				3A75448E1DE205BC00C9BC9A /* ProjectConfig */,
 				3A75448F1DE205C600C9BC9A /* Core */,
@@ -339,7 +370,7 @@
 			children = (
 				3A31CF6F1DE935500043AB97 /* HotelApi.swift */,
 				3A7544901DE2070200C9BC9A /* TokenApi.swift */,
-				3A9F9B061DE7E28900333DDE /* CountriesApi.swift */,
+				3A2161591DEB300C0023B551 /* Country */,
 			);
 			name = Api;
 			sourceTree = "<group>";
@@ -810,6 +841,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A31CF781DE984CF0043AB97 /* OCVCExtension.swift in Sources */,
 				3A31CF761DE96B170043AB97 /* SwiftMainViewController.swift in Sources */,
 				3A75445D1DE19D4F00C9BC9A /* SwiftViewController.swift in Sources */,
 				3A75442C1DE19D0100C9BC9A /* AppDelegate.m in Sources */,
@@ -840,10 +872,14 @@
 			files = (
 				3A9F9B071DE7E28900333DDE /* CountriesApi.swift in Sources */,
 				3A21FE7C1DE30A1000BEDCD2 /* OAuthResult.swift in Sources */,
+				3A21615B1DEB307F0023B551 /* CountriesRelatedApi.swift in Sources */,
+				3A2161601DEB33EB0023B551 /* CountryiesRegionsApi.swift in Sources */,
 				3AED4B7D1DE4AF3800180907 /* NetworkManager.swift in Sources */,
+				3A21615E1DEB31AB0023B551 /* SequenceExtension.swift in Sources */,
 				3A9F9B021DE7DE1C00333DDE /* Hotel.swift in Sources */,
 				3A7544911DE2070200C9BC9A /* TokenApi.swift in Sources */,
 				3A75448D1DE1AFA700C9BC9A /* NetworkEnviroment.swift in Sources */,
+				3A2161621DEB34310023B551 /* Region.swift in Sources */,
 				3A75448B1DE1AC5500C9BC9A /* NetworkConfig.swift in Sources */,
 				3A31CF701DE935500043AB97 /* HotelApi.swift in Sources */,
 				3A9F9B051DE7E1B100333DDE /* Country.swift in Sources */,

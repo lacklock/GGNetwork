@@ -20,9 +20,24 @@
                     <view key="view" contentMode="scaleToFill" id="7qA-Nk-2jb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hua-ue-Fmx">
+                                <rect key="frame" x="166" y="323" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hua-ue-Fmx" firstAttribute="centerY" secondItem="7qA-Nk-2jb" secondAttribute="centerY" id="LD2-AY-5W8"/>
+                            <constraint firstItem="Hua-ue-Fmx" firstAttribute="centerX" secondItem="7qA-Nk-2jb" secondAttribute="centerX" id="tSf-VO-weN"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="recents" id="fde-qH-Eej"/>
+                    <connections>
+                        <outlet property="demoLabel" destination="Hua-ue-Fmx" id="0Ff-11-K9Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fce-1Z-Kib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

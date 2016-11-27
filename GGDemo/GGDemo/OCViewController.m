@@ -7,6 +7,7 @@
 //
 
 #import "OCViewController.h"
+#import "GGDemo-Swift.h"
 
 @import GGNetwork;
 
@@ -19,12 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    TokenApi *api = [[TokenApi alloc] initWithType:OAuthGrantTypeCredentials];
-    api.success = ^(OAuthResult *result) {
-        NSString *token = result.token;
-    };
-    [api start];
+//    CountriesApi *api = [[CountriesApi alloc]init];
+//    api.success = ^(NSArray *datas) {
+//        for (Country *obj in datas) {
+//            NSString *name = obj.name;
+//        }
+//    };
+//    [api start];
     
+    [self getCountries];
     
 }
 
