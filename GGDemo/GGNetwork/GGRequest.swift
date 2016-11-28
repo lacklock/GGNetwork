@@ -9,7 +9,12 @@
 import UIKit
 import ObjectMapper
 
-public class GGRequest<Value>: NSObject {
+protocol RequestInvokable {
+    func start()
+    func excuteFailedAction(error: Error)
+}
+
+public class GGRequest<Value>: NSObject,RequestInvokable {
     
     typealias SendNext = (Value) -> Void
     typealias SendFail = (Error) -> Void
@@ -18,13 +23,23 @@ public class GGRequest<Value>: NSObject {
     private var fail: (Error) -> Void = { _ in }
     private var startAction: (@escaping SendNext,@escaping SendFail) -> Void
     
+    var needOAuth = true
+    
     init(start: @escaping (@escaping SendNext, @escaping SendFail) -> Void) {
         startAction = start
         super.init()
     }
     
     public func start() {
+        if NetworkManager.refreshTokenIfNeeded() && self.needOAuth {
+            NetworkManager.suspendRequests.append(self)
+            return
+        }
         startAction(success,fail)
+    }
+    
+    func excuteFailedAction(error: Error) {
+        fail(error)
     }
     
     @discardableResult

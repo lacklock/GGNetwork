@@ -13,6 +13,7 @@ import ObjectMapper
 enum NetworkError: Error {
     case jsonMapperError
     case responseDataFormatError
+    case getTokenFailed
 }
 
 public class Api: NSObject {
@@ -82,6 +83,7 @@ public class Api: NSObject {
                 }
             })
         }
+        handler.needOAuth = needOAuth
         return handler
     }
     
@@ -96,6 +98,7 @@ public class Api: NSObject {
                 strognSelf.success(models)
             })
         }
+        handler.needOAuth = needOAuth
         return handler
     }
     

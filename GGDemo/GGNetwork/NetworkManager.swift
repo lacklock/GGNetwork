@@ -39,7 +39,7 @@ public class NetworkManager: NSObject {
     }
     
     /// 请求时如果正在刷新token，挂起api
-    private static var suspendRequests = [Api]()
+    static var suspendRequests = [RequestInvokable]()
     
     public static func start() {
         let _ = refreshTokenIfNeeded()
@@ -47,6 +47,7 @@ public class NetworkManager: NSObject {
     
     private static var isRequestingToken = false
     
+    @discardableResult
     static func refreshTokenIfNeeded() -> Bool {
         if isRequestingToken {
             return true
@@ -83,9 +84,10 @@ public class NetworkManager: NSObject {
         let api = TokenApi(type: .refreshToken)
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
+            self.excuteSuspendRequests(isSucced: true)
         }.failed { (error) in
             self.isRequestingToken = false
-            // TODO: failed handle
+            self.excuteSuspendRequests(isSucced: false)
         }.start()
     }
     
@@ -104,9 +106,25 @@ public class NetworkManager: NSObject {
             self.isRequestingToken = false
             self.accessToken = oauth.token
             self.accessTokenExpire = oauth.tokenExpire
+            self.excuteSuspendRequests(isSucced: true)
         }.failed { (error) in
             self.isRequestingToken = false
-            // failed waiting queue
+            self.excuteSuspendRequests(isSucced: false)
         }.start()
+    }
+    
+    
+    private static func excuteSuspendRequests(isSucced: Bool) {
+        if isSucced {
+            suspendRequests.forEach {
+                $0.start()
+            }
+            suspendRequests.removeAll()
+        }else {
+            suspendRequests.forEach {
+                $0.excuteFailedAction(error: NetworkError.getTokenFailed)
+            }
+            suspendRequests.removeAll()
+        }
     }
 }
