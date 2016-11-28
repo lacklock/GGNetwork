@@ -21,9 +21,7 @@ class SwiftViewController: UIViewController {
         }.failed { (error) in
             print(error)
         }.start()
-        
-        let ss = ["t","6"]
-        ss.joined(separator: ",")
+
     }
     
     deinit {

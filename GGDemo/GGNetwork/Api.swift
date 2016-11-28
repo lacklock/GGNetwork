@@ -70,28 +70,30 @@ public class Api: NSObject {
     public var fail: (Error) -> Void = { _ in }
 
     func request<T: Mappable>() -> GGRequest<T> {
-        let handler = GGRequest<T>() { (sendNext,sendFail) in
-            self.setupRequest(sendFail: sendFail, finished: { (data: [String : Any]) in
+        let handler = GGRequest<T>() {[weak self]  (sendNext,sendFail) in
+            guard let strognSelf = self else { return }
+            strognSelf.setupRequest(sendFail: sendFail, finished: { (data: [String : Any]) in
                 if let model = Mapper<T>().map(JSON: data) {
                     sendNext(model)
-                    self.success(model)
+                    strognSelf.success(model)
                 }else {
                     sendFail(NetworkError.jsonMapperError)
-                    self.fail(NetworkError.jsonMapperError)
+                    strognSelf.fail(NetworkError.jsonMapperError)
                 }
             })
         }
         return handler
     }
     
-    public func request<T: Mappable>() -> GGRequest<[T]> {        
-        let handler = GGRequest<[T]>() { (sendNext,sendFail) in
-            self.setupRequest(sendFail: sendFail, finished: { (data: [[String : Any]]) in
+    public func request<T: Mappable>() -> GGRequest<[T]> {
+        let handler = GGRequest<[T]>() {[weak self]  (sendNext,sendFail) in
+            guard let strognSelf = self else { return }
+            strognSelf.setupRequest(sendFail: sendFail, finished: { (data: [[String : Any]]) in
                 let models = data.flatMap {
                     Mapper<T>().map(JSON: $0)
                 }
                 sendNext(models)
-                self.success(models)
+                strognSelf.success(models)
             })
         }
         return handler
@@ -100,8 +102,8 @@ public class Api: NSObject {
     private func setupRequest<ResponseType>(sendFail: @escaping (Error) -> Void, finished: @escaping (ResponseType) -> Void) {
         prepareForRequest()
         let request = Alamofire.request(url, method: method, parameters: parameters,headers: headers)
-        RequestingQueueManager.addRequest(request: request)
         request.hostIdentifier = hostIdentifier
+        RequestingQueueManager.addRequest(request: request)
         request.validate(statusCode: 200...299)
             .responseJSON { response in
                 RequestingQueueManager.removeRequest(request: request)
