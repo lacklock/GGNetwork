@@ -12,37 +12,16 @@ import UIKit
 
 public class NetworkManager: NSObject {
     
-    static var accessToken: String? = UserDefaults.standard.string(forKey: OAuthResult.Key.access_token.rawValue) {
-        didSet{
-            UserDefaults.standard.set(accessToken, forKey: OAuthResult.Key.access_token.rawValue)
-            UserDefaults.standard.synchronize()
-        }
-    }
-    static var accessTokenExpire = UserDefaults.standard.double(forKey: OAuthResult.Key.access_expires_in.rawValue) {
-        didSet{
-            UserDefaults.standard.set(accessTokenExpire, forKey: OAuthResult.Key.access_expires_in.rawValue)
-            UserDefaults.standard.synchronize()
-        }
-    }
-    
-    static var refreshToken: String? = UserDefaults.standard.string(forKey: OAuthResult.Key.refresh_token.rawValue) {
-        didSet{
-            UserDefaults.standard.set(refreshToken, forKey: OAuthResult.Key.refresh_token.rawValue)
-            UserDefaults.standard.synchronize()
-        }
-    }
-    static var refreshTokenExpire: Double = UserDefaults.standard.double(forKey: OAuthResult.Key.refresh_expires_in.rawValue) {
-        didSet{
-            UserDefaults.standard.set(refreshTokenExpire, forKey: OAuthResult.Key.refresh_expires_in.rawValue)
-            UserDefaults.standard.synchronize()
-        }
-    }
-    
     /// 请求时如果正在刷新token，挂起api
     static var suspendRequests = [RequestInvokable]()
     
     public static func start() {
         let _ = refreshTokenIfNeeded()
+        
+        let mb = 1024 * 1024
+        let cache = URLCache(memoryCapacity: 5 * mb, diskCapacity: 200 * mb, diskPath: nil)
+        URLCache.shared = cache
+        
     }
     
     private static var isRequestingToken = false
@@ -76,7 +55,6 @@ public class NetworkManager: NSObject {
             requestNewToken()
         }
     }
-    
     
     /// 根据刷新原有token
     static func startRefreshToken() {
@@ -125,6 +103,33 @@ public class NetworkManager: NSObject {
                 $0.excuteFailedAction(error: NetworkError.getTokenFailed)
             }
             suspendRequests.removeAll()
+        }
+    }
+    
+    // MARK: - cached token
+    static var accessToken: String? = UserDefaults.standard.string(forKey: OAuthResult.Key.access_token.rawValue) {
+        didSet{
+            UserDefaults.standard.set(accessToken, forKey: OAuthResult.Key.access_token.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    static var accessTokenExpire = UserDefaults.standard.double(forKey: OAuthResult.Key.access_expires_in.rawValue) {
+        didSet{
+            UserDefaults.standard.set(accessTokenExpire, forKey: OAuthResult.Key.access_expires_in.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    static var refreshToken: String? = UserDefaults.standard.string(forKey: OAuthResult.Key.refresh_token.rawValue) {
+        didSet{
+            UserDefaults.standard.set(refreshToken, forKey: OAuthResult.Key.refresh_token.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    static var refreshTokenExpire: Double = UserDefaults.standard.double(forKey: OAuthResult.Key.refresh_expires_in.rawValue) {
+        didSet{
+            UserDefaults.standard.set(refreshTokenExpire, forKey: OAuthResult.Key.refresh_expires_in.rawValue)
+            UserDefaults.standard.synchronize()
         }
     }
 }
