@@ -32,38 +32,41 @@ public class NetworkManager: NSObject {
             return true
         }
         guard let token = accessToken, token.characters.count > 0, accessTokenExpire > 0 else {
-            requestToken()
+            requestToken(isBackground: false)
             return true
         }
         let now = Date().timeIntervalSince1970
         let warningInterval: Double = 15 * 60 //如果过期时间很接近提前更新token
         if now > accessTokenExpire {
-            requestToken()
+            requestToken(isBackground: false)
             return true
         } else if (accessTokenExpire - now ) < warningInterval { //过期时间距离现在小于警戒时间
-            requestToken()
+            requestToken(isBackground: true)
         }
         return false
     }
     
-    static func requestToken() {
+    static func requestToken(isBackground: Bool) {
         let now = Date().timeIntervalSince1970
         if let _ = refreshToken,  // TODO: 刷新token过期是要提示用户登录？
             refreshTokenExpire > now {
-            startRefreshToken()
+            startRefreshToken(isBackground: false)
         }else {
-            requestNewToken()
+            requestNewToken(isBackground: false)
         }
     }
     
     /// 根据刷新原有token
-    static func startRefreshToken() {
-        isRequestingToken = true
+    static func startRefreshToken(isBackground: Bool) {
+        isRequestingToken = !isBackground
         let api = TokenApi(type: .refreshToken)
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
             self.excuteSuspendRequests(isSucced: true)
         }.failed { (error) in
+            if isBackground {
+                return
+            }
             self.isRequestingToken = false
             self.excuteSuspendRequests(isSucced: false)
         }.start()
@@ -77,8 +80,8 @@ public class NetworkManager: NSObject {
     }
     
     /// 请求一个全新的token
-    static func requestNewToken() {
-        isRequestingToken = true
+    static func requestNewToken(isBackground: Bool) {
+        isRequestingToken = !isBackground
         let api = TokenApi(type: .credentials)
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
@@ -86,6 +89,9 @@ public class NetworkManager: NSObject {
             self.accessTokenExpire = oauth.tokenExpire
             self.excuteSuspendRequests(isSucced: true)
         }.failed { (error) in
+            if isBackground {
+                return
+            }
             self.isRequestingToken = false
             self.excuteSuspendRequests(isSucced: false)
         }.start()
