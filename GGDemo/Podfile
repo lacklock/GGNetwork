@@ -26,11 +26,13 @@ target 'GGNetwork' do
 
   pod 'Alamofire', '~> 4.1'
   pod 'ObjectMapper'
-
+  pod 'YYCache'
+  
   target 'GGNetworkTests' do
     inherit! :search_paths
     pod 'Alamofire', '~> 4.1'
     pod 'ObjectMapper'
+    pod 'YYCache'
 
   end
 
