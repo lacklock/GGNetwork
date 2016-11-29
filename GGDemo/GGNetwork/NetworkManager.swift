@@ -32,39 +32,44 @@ public class NetworkManager: NSObject {
             return true
         }
         guard let token = accessToken, token.characters.count > 0, accessTokenExpire > 0 else {
-            requestToken(isBackground: false)
+            requestToken()
             return true
         }
         let now = Date().timeIntervalSince1970
         let warningInterval: Double = 15 * 60 //如果过期时间很接近提前更新token
         if now > accessTokenExpire {
-            requestToken(isBackground: false)
+            requestToken()
             return true
-        } else if (accessTokenExpire - now ) < warningInterval { //过期时间距离现在小于警戒时间
-            requestToken(isBackground: true)
+        } else if (accessTokenExpire - now ) < warningInterval { //过期时间距离现在小于警戒时间 
+            // TODO: 提前刷新token时可能出现连续请求token
+            requestToken(inBackground: true)
         }
         return false
     }
     
-    static func requestToken(isBackground: Bool) {
+    static func requestToken(inBackground: Bool = false) {
         let now = Date().timeIntervalSince1970
-        if let _ = refreshToken,  // TODO: 刷新token过期是要提示用户登录？
-            refreshTokenExpire > now {
-            startRefreshToken(isBackground: false)
+        if let _ = refreshToken{
+            if refreshTokenExpire > now {
+                startRefreshToken()
+            }else {
+                requestNewToken()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserNeedLoginAgain"), object: nil)
+            }
         }else {
-            requestNewToken(isBackground: false)
+            requestNewToken()
         }
     }
     
     /// 根据刷新原有token
-    static func startRefreshToken(isBackground: Bool) {
-        isRequestingToken = !isBackground
+    static func startRefreshToken(inBackground: Bool = false) {
+        isRequestingToken = !inBackground
         let api = TokenApi(type: .refreshToken)
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
             self.excuteSuspendRequests(isSucced: true)
         }.failed { (error) in
-            if isBackground {
+            if inBackground {
                 return
             }
             self.isRequestingToken = false
@@ -80,8 +85,8 @@ public class NetworkManager: NSObject {
     }
     
     /// 请求一个全新的token
-    static func requestNewToken(isBackground: Bool) {
-        isRequestingToken = !isBackground
+    static func requestNewToken(inBackground: Bool = false) {
+        isRequestingToken = !inBackground
         let api = TokenApi(type: .credentials)
         api.handler.succeed { (oauth) in
             self.isRequestingToken = false
@@ -89,7 +94,7 @@ public class NetworkManager: NSObject {
             self.accessTokenExpire = oauth.tokenExpire
             self.excuteSuspendRequests(isSucced: true)
         }.failed { (error) in
-            if isBackground {
+            if inBackground {
                 return
             }
             self.isRequestingToken = false
