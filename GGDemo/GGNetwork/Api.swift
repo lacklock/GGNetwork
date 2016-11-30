@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import ObjectMapper
+import YYCache
 
 enum NetworkError: Error {
     case jsonMapperError
@@ -24,7 +25,7 @@ public class Api: NSObject {
         setupHeaders()
     }
     
-    var needCache = false 
+    public var needCache = false
     
     private func setupHeaders() {
         headers["Accept"] = "application/vnd.hotelgg.v1+json"
@@ -71,10 +72,17 @@ public class Api: NSObject {
     public var fail: (Error) -> Void = { _ in }
 
     func request<T: Mappable>() -> GGRequest<T> {
+        func parsingJson(json: Any) -> T? {
+            guard let data = json as? [String : Any] else {
+                return nil
+            }
+            return Mapper<T>().map(JSON: data)
+        }
+        
         let handler = GGRequest<T>() {[weak self]  (sendNext,sendFail) in
             guard let strognSelf = self else { return }
             strognSelf.setupRequest(sendFail: sendFail, finished: { (data: [String : Any]) in
-                if let model = Mapper<T>().map(JSON: data) {
+                if let model = parsingJson(json: data) {
                     sendNext(model)
                     strognSelf.success(model)
                 }else {
@@ -84,21 +92,39 @@ public class Api: NSObject {
             })
         }
         handler.needOAuth = needOAuth
+        if needCache {
+            prepareForRequest()
+            handler.cacheKey = url
+            handler.parsingJson = parsingJson
+        }
         return handler
     }
     
     public func request<T: Mappable>() -> GGRequest<[T]> {
+        func parsingJson(json: Any) -> [T]? {
+            guard let data = json as? [[String : Any]] else {
+                return nil
+            }
+            let models = data.flatMap {
+                Mapper<T>().map(JSON: $0)
+            }
+            return models
+        }
+        
         let handler = GGRequest<[T]>() {[weak self]  (sendNext,sendFail) in
             guard let strognSelf = self else { return }
             strognSelf.setupRequest(sendFail: sendFail, finished: { (data: [[String : Any]]) in
-                let models = data.flatMap {
-                    Mapper<T>().map(JSON: $0)
-                }
+                let models = parsingJson(json: data)!
                 sendNext(models)
                 strognSelf.success(models)
             })
         }
         handler.needOAuth = needOAuth
+        if needCache {
+            prepareForRequest()
+            handler.cacheKey = url
+            handler.parsingJson = parsingJson
+        }
         return handler
     }
     
@@ -119,6 +145,11 @@ public class Api: NSObject {
                         sendFail(NetworkError.responseDataFormatError)
                         self.fail(NetworkError.responseDataFormatError)
                         return
+                    }
+                    if self.needCache {
+                        if let data = data as? NSCoding {
+                            YYCache.networkCache?.setObject(data, forKey: self.url)
+                        }
                     }
                     finished(data)
                 }

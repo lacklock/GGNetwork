@@ -16,7 +16,12 @@ class SwiftViewController: UIViewController {
 
         let api = CountriesApi()
         api.hostIdentifier = requestHostIdentifier
-        api.handler.succeed { (countries) in
+        api.needCache = true
+        api.handler.loadCached { (cached) in
+            if let data = cached {
+                print(data.count)
+            }
+        }.succeed { (countries) in
             print(countries.count)
         }.failed { (error) in
             print(error)

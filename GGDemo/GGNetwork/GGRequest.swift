@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import YYCache
 
 protocol RequestInvokable {
     func start()
@@ -22,6 +23,9 @@ public class GGRequest<Value>: NSObject,RequestInvokable {
     private var success: SendNext = { _ in }
     private var fail: (Error) -> Void = { _ in }
     private var startAction: (@escaping SendNext,@escaping SendFail) -> Void
+    
+    var cacheKey: String?
+    var parsingJson: (Any) -> Value? = { _ in return nil }
     
     var needOAuth = true
     
@@ -43,6 +47,16 @@ public class GGRequest<Value>: NSObject,RequestInvokable {
     }
     
     @discardableResult
+    public func loadCached(handler: @escaping (Value?) -> Void) -> GGRequest<Value> {
+        guard let key = cacheKey, let json = YYCache.networkCache?.object(forKey: key) else {
+            handler(nil)
+            return self
+        }
+        handler(parsingJson(json))
+        return self
+    }
+    
+    @discardableResult
     public func succeed(handler: @escaping (Value) -> Void) -> GGRequest<Value> {
         success = {[unowned self] response in
             self.observeSuccesQueue.forEach {
@@ -51,10 +65,6 @@ public class GGRequest<Value>: NSObject,RequestInvokable {
             handler(response)
         }
         return self
-    }
-    
-    public func cachedValue(){
-        
     }
     
     @discardableResult
@@ -68,4 +78,10 @@ public class GGRequest<Value>: NSObject,RequestInvokable {
         observeSuccesQueue.append(handler)
     }
 
+}
+
+extension YYCache {
+    static var networkCache: YYCache? {
+      return  YYCache(name: "NetWorkCache")
+    }
 }
