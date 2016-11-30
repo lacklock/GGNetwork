@@ -15,7 +15,7 @@ class SwiftViewController: UIViewController {
         super.viewDidLoad()
 
         let api = CountriesApi()
-        api.hostIdentifier = requestHostIdentifier
+        api.host = self
         api.needCache = true
         api.handler.loadCached { (cached) in
             if let data = cached {

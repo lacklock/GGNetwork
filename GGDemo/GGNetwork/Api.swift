@@ -49,6 +49,13 @@ public class Api: NSObject {
     
     /// 请求关联对象的ID
     public var hostIdentifier: String?
+    public var host: RequestHost? {
+        didSet{
+            if let host = host {
+                hostIdentifier = host.requestHostIdentifier
+            }
+        }
+    }
     
     var parameters = [String : Any]()
     var headers = [String : String]()
