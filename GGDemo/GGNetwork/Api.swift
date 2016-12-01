@@ -11,10 +11,32 @@ import Alamofire
 import ObjectMapper
 import YYCache
 
-enum NetworkError: Error {
+public enum NetworkError: Error,LocalizedError,CustomNSError {
     case jsonMapperError
     case responseDataFormatError
     case getTokenFailed
+    
+    public var errorDescription: String? {
+        switch self {
+        case .getTokenFailed:
+            return "获取token失败"
+        case .responseDataFormatError:
+            return "返回的数据格式与期望的不同"
+        case .jsonMapperError:
+            return "映射model时发生错误"
+        }
+    }
+    
+    public var errorCode: Int {
+        switch self {
+        case .getTokenFailed:
+            return 2000
+        case .jsonMapperError:
+            return 2001
+        case .responseDataFormatError:
+            return 2002
+        }
+    }
 }
 
 public class Api: NSObject {
