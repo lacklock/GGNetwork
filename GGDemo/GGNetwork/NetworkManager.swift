@@ -111,7 +111,7 @@ public class NetworkManager: NSObject {
             suspendRequests.removeAll()
         }else {
             suspendRequests.forEach {
-                $0.excuteFailedAction(error: NetworkError.getTokenFailed)
+                $0.excuteFailedAction(error: NetworkError.getTokenFailed as NSError)
             }
             suspendRequests.removeAll()
         }

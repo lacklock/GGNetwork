@@ -98,7 +98,7 @@ public class Api: NSObject {
     
     //为兼容OC用
     public var success: (Any) -> Void  = { _ in }
-    public var fail: (Error) -> Void = { _ in }
+    public var fail: (NSError) -> Void = { _ in }
 
     func request<T: Mappable>() -> GGRequest<T> {
         func parsingJson(json: Any) -> T? {
@@ -115,8 +115,8 @@ public class Api: NSObject {
                     sendNext(model)
                     strognSelf.success(model)
                 }else {
-                    sendFail(NetworkError.jsonMapperError)
-                    strognSelf.fail(NetworkError.jsonMapperError)
+                    sendFail(NetworkError.jsonMapperError as NSError)
+                    strognSelf.fail(NetworkError.jsonMapperError as NSError)
                 }
             })
         }
@@ -157,7 +157,7 @@ public class Api: NSObject {
         return handler
     }
     
-    private func setupRequest<ResponseType>(sendFail: @escaping (Error) -> Void, finished: @escaping (ResponseType) -> Void) {
+    private func setupRequest<ResponseType>(sendFail: @escaping (NSError) -> Void, finished: @escaping (ResponseType) -> Void) {
         prepareForRequest()
         let request = Alamofire.request(url, method: method, parameters: parameters,headers: headers)
         request.hostIdentifier = hostIdentifier
@@ -167,12 +167,12 @@ public class Api: NSObject {
                 RequestingQueueManager.removeRequest(request: request)
                 switch response.result {
                 case .failure(let error):
-                    self.fail(error)
-                    sendFail(error)
+                    self.fail(error as NSError)
+                    sendFail(error as NSError)
                 case .success(let json):
                     guard let data = json as? ResponseType else {
-                        sendFail(NetworkError.responseDataFormatError)
-                        self.fail(NetworkError.responseDataFormatError)
+                        sendFail(NetworkError.responseDataFormatError as NSError)
+                        self.fail(NetworkError.responseDataFormatError as NSError)
                         return
                     }
                     if self.needCache {

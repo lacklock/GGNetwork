@@ -12,16 +12,16 @@ import YYCache
 
 protocol RequestInvokable {
     func start()
-    func excuteFailedAction(error: Error)
+    func excuteFailedAction(error: NSError)
 }
 
 public class GGRequest<Value>: NSObject,RequestInvokable {
     
     typealias SendNext = (Value) -> Void
-    typealias SendFail = (Error) -> Void
+    typealias SendFail = (NSError) -> Void
     
     private var success: SendNext = { _ in }
-    private var fail: (Error) -> Void = { _ in }
+    private var fail: (NSError) -> Void = { _ in }
     private var startAction: (@escaping SendNext,@escaping SendFail) -> Void
     
     var cacheKey: String?
@@ -42,7 +42,7 @@ public class GGRequest<Value>: NSObject,RequestInvokable {
         startAction(success,fail)
     }
     
-    func excuteFailedAction(error: Error) {
+    func excuteFailedAction(error: NSError) {
         fail(error)
     }
     
@@ -68,7 +68,7 @@ public class GGRequest<Value>: NSObject,RequestInvokable {
     }
     
     @discardableResult
-    public func failed(handler: @escaping (Error) -> Void) -> GGRequest<Value> {
+    public func failed(handler: @escaping (NSError) -> Void) -> GGRequest<Value> {
         fail = handler
         return self
     }
