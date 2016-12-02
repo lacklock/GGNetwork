@@ -54,7 +54,7 @@ public class NetworkManager: NSObject {
                 startRefreshToken()
             }else {
                 requestNewToken()
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserNeedLoginAgain"), object: nil)
+                notifyNeedLogin()
             }
         }else {
             requestNewToken()
@@ -74,7 +74,12 @@ public class NetworkManager: NSObject {
             }
             self.isRequestingToken = false
             self.excuteSuspendRequests(isSucced: false)
+            self.notifyNeedLogin()
         }.start()
+    }
+    
+    private static func notifyNeedLogin() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UserNeedLoginAgain"), object: nil)
     }
     
     static func udpate(oauth: OAuthResult) {
