@@ -31,7 +31,9 @@ public class NetworkManager: NSObject {
         if isRequestingToken {
             return true
         }
-        guard let token = accessToken, token.characters.count > 0, accessTokenExpire > 0 else {
+        guard let token = accessToken,
+            token.characters.count > 0,
+            accessTokenExpire > 0 else {
             requestToken()
             return true
         }
@@ -105,6 +107,19 @@ public class NetworkManager: NSObject {
             self.isRequestingToken = false
             self.excuteSuspendRequests(isSucced: false)
         }.start()
+    }
+    
+    public static func userLogout(success: @escaping () -> Void, failed: @escaping (NSError) -> Void){
+        let api = TokenApi(type: .credentials)
+        api.handler.succeed { (oauth) in
+            self.accessToken = oauth.token
+            self.accessTokenExpire = oauth.tokenExpire
+            self.refreshToken = nil
+            self.refreshTokenExpire = 0
+            success()
+        }.failed { (error) in
+            failed(error)
+        }
     }
     
     
