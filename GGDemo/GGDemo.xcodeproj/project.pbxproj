@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A12D4E21DF58B5A00B103D4 /* GGNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A12D4E11DF58B5A00B103D4 /* GGNetworkError.swift */; };
 		3A21615B1DEB307F0023B551 /* CountriesRelatedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615A1DEB307F0023B551 /* CountriesRelatedApi.swift */; };
 		3A21615E1DEB31AB0023B551 /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615D1DEB31AB0023B551 /* SequenceExtension.swift */; };
 		3A2161601DEB33EB0023B551 /* CountryiesRegionsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21615F1DEB33EB0023B551 /* CountryiesRegionsApi.swift */; };
@@ -105,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		217C2273C6C60C5C1D6423F3 /* Pods-GGDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GGDemoUITests/Pods-GGDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3A12D4E11DF58B5A00B103D4 /* GGNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGNetworkError.swift; sourceTree = "<group>"; };
 		3A21615A1DEB307F0023B551 /* CountriesRelatedApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesRelatedApi.swift; sourceTree = "<group>"; };
 		3A21615D1DEB31AB0023B551 /* SequenceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtension.swift; sourceTree = "<group>"; };
 		3A21615F1DEB33EB0023B551 /* CountryiesRegionsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryiesRegionsApi.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				3A9F9B011DE7DE1C00333DDE /* Hotel.swift */,
 				3A9F9B041DE7E1B100333DDE /* Country.swift */,
 				3A2161611DEB34310023B551 /* Region.swift */,
+				3A12D4E11DF58B5A00B103D4 /* GGNetworkError.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9F9B071DE7E28900333DDE /* CountriesApi.swift in Sources */,
+				3A12D4E21DF58B5A00B103D4 /* GGNetworkError.swift in Sources */,
 				3A21FE7C1DE30A1000BEDCD2 /* OAuthResult.swift in Sources */,
 				3A21615B1DEB307F0023B551 /* CountriesRelatedApi.swift in Sources */,
 				3A2161601DEB33EB0023B551 /* CountryiesRegionsApi.swift in Sources */,

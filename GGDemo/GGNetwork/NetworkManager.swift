@@ -137,6 +137,13 @@ public class NetworkManager: NSObject {
         }
     }
     
+    static func process(responseError: GGNetworkError){
+        if responseError.code == 401 && responseError.error == "invalid_token" { //token 过期
+            requestNewToken()
+            notifyNeedLogin()
+        }
+    }
+    
     // MARK: - cached token
     static var accessToken: String? = UserDefaults.standard.string(forKey: OAuthResult.Key.access_token.rawValue) {
         didSet{

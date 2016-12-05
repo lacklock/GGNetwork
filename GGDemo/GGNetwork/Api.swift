@@ -162,26 +162,47 @@ public class Api: NSObject {
         let request = Alamofire.request(url, method: method, parameters: parameters,headers: headers)
         request.hostIdentifier = hostIdentifier
         RequestingQueueManager.addRequest(request: request)
-        request.validate(statusCode: 200...299)
-            .responseJSON { response in
-                RequestingQueueManager.removeRequest(request: request)
-                switch response.result {
-                case .failure(let error):
+        request.responseJSON { response in
+            RequestingQueueManager.removeRequest(request: request)
+            guard let stausCode = response.response?.statusCode else {
+                let error = NSError(domain: "GGNetwork", code: -1, userInfo: ["description":"没有状态码返回"])
+                self.fail(error)
+                sendFail(error)
+                return
+            }
+            if let error = response.result.error {
+                self.fail(error as NSError)
+                sendFail(error as NSError)
+                return
+            }
+            switch stausCode {
+            case 200...299:
+                guard let json = response.result.value,
+                    let data = json as? ResponseType else {
+                    sendFail(NetworkError.responseDataFormatError as NSError)
+                    self.fail(NetworkError.responseDataFormatError as NSError)
+                    return
+                }
+                if self.needCache {
+                    if let data = data as? NSCoding {
+                        YYCache.networkCache?.setObject(data, forKey: self.url)
+                    }
+                }
+                finished(data)
+            default:
+                if let json = response.result.value as? [String: Any] {
+                    let error = GGNetworkError(JSON: json)!
+                    error.responseCode = stausCode
+                    self.fail(error)
+                    sendFail(error)
+                    NetworkManager.process(responseError: error)
+                }else {
+                    let error = NSError(domain: "GGNetwork", code: stausCode, userInfo: ["description":"没有数据返回"])
                     self.fail(error as NSError)
                     sendFail(error as NSError)
-                case .success(let json):
-                    guard let data = json as? ResponseType else {
-                        sendFail(NetworkError.responseDataFormatError as NSError)
-                        self.fail(NetworkError.responseDataFormatError as NSError)
-                        return
-                    }
-                    if self.needCache {
-                        if let data = data as? NSCoding {
-                            YYCache.networkCache?.setObject(data, forKey: self.url)
-                        }
-                    }
-                    finished(data)
+                    return
                 }
+            }
         }
     }
     
